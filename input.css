@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
+body {
+  font-family: Helvetica, sans-serif;
+}
+
+.admin-input {
+  @apply flex flex-col mb-3;
+}
+
+.admin-input > input {
+  @apply border border-black w-[450px] h-[40px] px-2 py-1 rounded-md;
+}
+
+.admin-input select {
+  @apply border border-black w-full h-[40px] px-2 py-1 rounded-md;
+}
+
+.admin-input label {
+  @apply text-gray-700 font-semibold text-lg;
+}
+
+.admin-input textarea {
+  @apply border border-black w-full h-[100px] px-2 py-1 rounded-md;
+}
+
+.button-red {
+  @apply bg-red-500 text-white px-4 py-2 rounded-md;
+}
+
+.button-red:hover {
+  @apply bg-red-600;
+}
+
+.button-white {
+  @apply bg-white text-red-500 px-4 py-2 rounded-md border border-red-500;
+}
+
+.button-white:hover {
+  @apply bg-gray-100;
+}
+
+.tag {
+  @apply py-2 px-5 w-full pr-10 flex items-center gap-2 font-semibold text-[22px];
+}
+
+.tag.active {
+  @apply bg-white;
+}
+
+.link {
+  @apply border border-orange-300 px-3 py-2 rounded-2xl;
+}
+
+.link-primary {
+  @apply text-blue-500  hover:text-blue-600 hover:underline;
+}
+
+.link-secondary {
+  @apply text-red-500 hover:text-red-600 hover:underline;
+}
+
+.admin table {
+  @apply border-collapse;
+}
+
+.admin thead {
+  @apply bg-orange-300 text-xl;
+}
+
+.admin table tr td,
+th {
+  @apply border-[3px] border-orange-300 px-4 py-3 text-center;
+}
+
+.work-sans {
+  font-family: "Work Sans", sans-serif;
+}
+
+#menu-toggle:checked + #menu {
+  display: block;
+}
+
+.hover\:grow {
+  transition: all 0.3s;
+  transform: scale(1);
+}
+
+.hover\:grow:hover {
+  transform: scale(1.02);
+}
+
+.alert {
+  @apply border-l-4 border-red-500 text-red-700 p-2 mt-2;
+}
+
+.rating {
+  direction: rtl;
+}
+
+.rating ion-icon {
+  color: black;
+  cursor: pointer;
+
+  transition: 0.3s all;
+}
+
+.rating ion-icon:hover {
+  color: rgb(250, 204, 21);
+}
+
+.s1:hover ~ ion-icon {
+  color: rgb(250, 204, 21);
+}
+
+.s2:hover ~ ion-icon {
+  color: rgb(250, 204, 21);
+}
+
+.s3:hover ~ ion-icon {
+  color: rgb(250, 204, 21);
+}
+
+.s4:hover ~ ion-icon {
+  color: rgb(250, 204, 21);
+}
+
+.s5:hover ~ ion-icon {
+  color: rgb(250, 204, 21);
+}
