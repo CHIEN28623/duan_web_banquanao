@@ -81,8 +81,8 @@ if (isset($_SESSION['cart'])) {
         <circle cx="17.5" cy="18.5" r="1.5" />
       </svg>
       <?php if ($count > 0) { ?>
-        <span
-          class="cart-number absolute top-[-6px] right-[-5px] bg-red-500 text-white rounded-full text-xs w-4 h-4 flex items-center justify-center"><?= $count ?></span>
+      <span
+        class="cart-number absolute top-[-6px] right-[-5px] bg-red-500 text-white rounded-full text-xs w-4 h-4 flex items-center justify-center"><?= $count ?></span>
       <?php } ?>
     </a>
 
