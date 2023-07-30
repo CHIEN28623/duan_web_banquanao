@@ -30,34 +30,27 @@
 
   <div class="flex gap-10">
     <div class="admin-input">
-      <label>Is active?</label>
-      <div>
-        <label class="mr-5 flex gap-2 "><input name="isActive" value="1" type="radio" <?php if ($isActive == 1)
-          echo "checked" ?>>True</label>
-          <label class="mr-5 flex gap-2 text-[10px]"><input name="isActive" value="0" type="radio" <?php if ($isActive == 0)
-          echo "checked" ?>>false</label>
-        </div>
-      </div>
+
       <div class="admin-input">
         <label>Is admin?</label>
         <div>
           <label class="mr-5 flex gap-2 "><input name="is_admin" value="1" type="radio" <?php if ($is_admin == 1)
-          echo "checked" ?>>True</label>
-          <label class="mr-5 flex gap-2 text-[10px]"><input name="is_admin" value="0" type="radio" <?php if ($is_admin == 0)
-          echo "checked" ?>>false</label>
+            echo "checked" ?>>True</label>
+            <label class="mr-5 flex gap-2 text-[10px]"><input name="is_admin" value="0" type="radio" <?php if ($is_admin == 0)
+            echo "checked" ?>>false</label>
+          </div>
         </div>
-      </div>
 
-    </div>
-    <div>
-      <button name="btn_update" type="submit" class="button-red">Update</button>
-      <button type="reset" class="button-white mx-5">Reset</button>
-      <a href="index.php?btn_list" class="link-primary hover:underline">List</a>
-    </div>
+      </div>
+      <div>
+        <button name="btn_update" type="submit" class="button-red">Update</button>
+        <button type="reset" class="button-white mx-5">Reset</button>
+        <a href="index.php?btn_list" class="link-primary hover:underline">List</a>
+      </div>
   </form>
 
   <?php
-        if (strlen($MESSAGE)) {
-          echo "<h5 class='text-[20px] ml-24 mt-6 text-red-500'>$MESSAGE</h5>";
-        }
-        ?>
+          if (strlen($MESSAGE)) {
+            echo "<h5 class='text-[20px] ml-24 mt-6 text-red-500'>$MESSAGE</h5>";
+          }
+          ?>

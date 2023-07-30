@@ -10,13 +10,17 @@ if (exist_param("btn_insert")) {
 
   $imageUrl;
 
+  // Nếu không trống thì lưu file vào thư mục /content/images/user/
   if (!empty($_FILES['file']['image'])) {
     $image = save_file("image", "/content/images/user/");
     $imageUrl = '/content/images/user/' . $image;
 
   }
 
+  // Nếu trống thì lấy ảnh mặc định
   $imageUrl = strlen($imageUrl) > 0 ? $imageUrl : '/content/images/user/user.png';
+
+  echo $imageUrl;
 
   if ($password !== $passwordConfirm) {
     $MESSAGE = "Password and confirm password must be the same!";
@@ -44,24 +48,8 @@ if (exist_param("btn_insert")) {
     $imageUrl = '/content/images/user/' . $image;
   }
 
-  if ($password !== $passwordConfirm) {
-    $MESSAGE = "Password and confirm password must be the same!";
-  } else if (strlen($fullname) == 0 || strlen($email) == 0 || strlen($password) == 0) {
-    $MESSAGE = "Please enter full information!";
-  } else {
-    try {
-      if (empty($imageUrl)) {
-        users_update_without_image($fullname, $email, $isActive, $password, $is_admin, $user_id);
-      } else {
-        users_update($fullname, $email, $isActive, $imageUrl, $password, $is_admin, $user_id);
-      }
+  echo $imageUrl;
 
-      $MESSAGE = "Update successfully!";
-    } catch (Exception $exc) {
-      echo $exc->getMessage();
-      $MESSAGE = "Update failed!";
-    }
-  }
   $VIEW_NAME = "user/edit.php";
 } else if (exist_param("btn_delete")) {
   try {

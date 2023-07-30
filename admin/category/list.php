@@ -15,20 +15,20 @@
       foreach ($items as $item) {
         extract($item);
         ?>
-      <tr>
-        <th><input type="checkbox" name="category_id[]" value="<?= $category_id ?>"></th>
-        <td>
-          <?= $category_id ?>
-        </td>
-        <td>
-          <?= $name ?>
-        </td>
-        <td>
-          <a href="index.php?btn_edit&category_id=<?= $category_id ?>" class="link-secondary">Edit</a>
-          <a href="index.php?btn_delete&category_id=<?= $category_id ?>" class="link-secondary">Remove</a>
-        </td>
-      </tr>
-      <?php
+        <tr>
+          <th><input type="checkbox" name="category_id[]" value="<?= $category_id ?>"></th>
+          <td>
+            <?= $category_id ?>
+          </td>
+          <td>
+            <?= $name ?>
+          </td>
+          <td>
+            <a href="index.php?btn_edit&category_id=<?= $category_id ?>" class="link-secondary">Edit</a>
+            <a href="index.php?btn_delete&category_id=<?= $category_id ?>" class="link-secondary">Remove</a>
+          </td>
+        </tr>
+        <?php
       }
       ?>
     </tbody>

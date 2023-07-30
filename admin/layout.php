@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Admin Dashboard</title>
-  <link href="/duan1/output.css" rel="stylesheet">
+  <link href="../../output.css" rel="stylesheet">
   <script src="../../content/js/jquery.min.js" type="text/javascript"></script>
   <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
@@ -23,7 +23,7 @@
           <?= $_SESSION['fullname'] ?>
         </p>
 
-        <a class="flex cursor-pointer hover:underline" href="/duan1/site/homepage/">
+        <a class="flex cursor-pointer hover:underline" href="/site/homepage/">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round"
