@@ -8,12 +8,10 @@
   <title>Gia Bao Store</title>
   <meta name="description" content="Free open source Tailwind CSS Store template">
 
-  <script src="/content/js/jquery.min.js" type="text/javascript" defer></script>
-  <script src="/content/js/script.js" defer></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/output.css">
+  <link rel="stylesheet" href="../../output.css">
 
 
   <style>

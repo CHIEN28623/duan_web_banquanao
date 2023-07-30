@@ -40,7 +40,7 @@
 
     } else {
       echo '
-      <a class="inline-block no-underline hover:text-black cursor-pointer" href="/site/account/login.php">
+      <a class="inline-block no-underline hover:text-black cursor-pointer" href="/duan1/site/account/login.php">
       <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
         viewBox="0 0 24 24">
         <circle fill="none" cx="12" cy="7" r="3" />
@@ -54,7 +54,7 @@
 
     <?php
     if (isset($_SESSION['fullname'])) {
-      echo '<a class="text-gray-600 no-underline hover:text-black hover:underline mx-3 cursor-pointer" href="/site/account/login.php?logout" > Logout </a>';
+      echo '<a class="text-gray-600 no-underline hover:text-black hover:underline mx-3 cursor-pointer" href="/duan1/site/account/login.php?logout" > Logout </a>';
 
     }
 
