@@ -43,9 +43,9 @@ if ($_POST) {
       $_SESSION['image'] = $user['image'];
 
       if ($user['is_admin'] == 1) {
-        header("location: /duan1/admin");
+        header("location: /admin");
       } else {
-        header("location: /duan1/site/homepage/index.php");
+        header("location: /site/homepage/index.php");
       }
 
     }

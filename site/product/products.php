@@ -5,6 +5,7 @@ require_once '../../dao/category.php';
 require_once '../../dao/product.php';
 require_once '../../dao/comment.php';
 
+
 extract(product_select_by_id($_GET['id']));
 product_increase_view($product_id);
 $category = category_select_by_id($category_id)['name'];
@@ -16,8 +17,6 @@ if (isset($_POST['add'])) {
   // add cart to session
   if (isset($_SESSION['cart'][$product_id])) {
     $_SESSION['cart'][$product_id]['quantity'] += $quantity;
-    // header('location: /site/cart');
-    // die();
   } else {
     $_SESSION['cart'][$product_id]['id'] = $product_id;
     $_SESSION['cart'][$product_id]['quantity'] = $quantity;
@@ -26,6 +25,8 @@ if (isset($_POST['add'])) {
     $_SESSION['cart'][$product_id]['price'] = $price - $price * $discount / 100;
     $_SESSION['cart'][$product_id]['image'] = $image;
   }
+
+  header("Refresh:0");
 
 }
 ?>

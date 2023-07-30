@@ -1,3 +1,14 @@
+<?php
+$count = 0;
+
+if (isset($_SESSION['cart'])) {
+  foreach ($_SESSION['cart'] as $item) {
+    $count += $item['quantity'];
+  }
+}
+
+?>
+
 <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
 
   <label for="menu-toggle" class="cursor-pointer md:hidden block">
@@ -40,7 +51,7 @@
 
     } else {
       echo '
-      <a class="inline-block no-underline hover:text-black cursor-pointer" href="/duan1/site/account/login.php">
+      <a class="inline-block no-underline hover:text-black cursor-pointer" href="/site/account/login.php">
       <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
         viewBox="0 0 24 24">
         <circle fill="none" cx="12" cy="7" r="3" />
@@ -54,21 +65,35 @@
 
     <?php
     if (isset($_SESSION['fullname'])) {
-      echo '<a class="text-gray-600 no-underline hover:text-black hover:underline mx-3 cursor-pointer" href="/duan1/site/account/login.php?logout" > Logout </a>';
+      echo '<a class="text-gray-600 no-underline hover:text-black hover:underline mx-3 cursor-pointer" href="/site/account/login.php?logout" > Logout </a>';
 
     }
 
+
     ?>
 
-    <a class="pl-3 inline-block no-underline hover:text-black" href="/site/homepage?cart">
-      <svg class=" fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+    <a class="pl-3 inline-block no-underline hover:text-black relative" href="/site/homepage?cart">
+      <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
         viewBox="0 0 24 24">
         <path
-          d="M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8 c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7z M17.341,14h-6.697L8.371,9 h11.112L17.341,14z" />
+          d="M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7zM17.341,14h-6.697L8.371,9h11.112L17.341,14z" />
         <circle cx="10.5" cy="18.5" r="1.5" />
         <circle cx="17.5" cy="18.5" r="1.5" />
       </svg>
+      <?php if ($count > 0) { ?>
+        <span
+          class="cart-number absolute top-[-6px] right-[-5px] bg-red-500 text-white rounded-full text-xs w-4 h-4 flex items-center justify-center"><?= $count ?></span>
+      <?php } ?>
     </a>
+
+    <a href="/site/order/index.php">
+      <svg xmlns=" http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6 ml-4 cursor-pointer">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+      </svg>
+    </a>
+
 
   </div>
 </div>
