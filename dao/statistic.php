@@ -27,3 +27,15 @@ function statistic_comment()
 
   return pdo_query($sql);
 }
+function statistic_order()  
+{
+  $sql = " SELECT * from orders o  inner join users u on o.user_id = u.user_id 
+  ";
+  return pdo_query($sql);
+}
+function statistic_order_items(){
+  $sql = " SELECT * from order_items oi inner join products p on oi.product_id=p.product_id ";
+  return pdo_query($sql);
+}
+
+// inner join products p on p.product_id = oi.product_id inner join users u on o.user_id = u.user_id 

@@ -55,7 +55,11 @@ function users_select_by_id($id)
   $sql = "SELECT * FROM users WHERE user_id=?";
   return pdo_query_one($sql, $id);
 }
-
+function users_select_id($id)
+{
+  $sql = "SELECT * FROM users WHERE user_id=?";
+  return pdo_query($sql, $id);
+}
 function users_select_by_email($email)
 {
   $sql = "SELECT * FROM users WHERE email=?";
