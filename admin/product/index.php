@@ -162,7 +162,19 @@ if (exist_param('btn_insert')) {
   $VIEW_NAME = "product/new.php";
 
 } else {
-  $items = product_select_all();
+  // Khởi tạo tham số cho thứ tự trang
+  if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+  } else {
+    $page = 1;
+  }
+  $products_per_page = 4;
+  $totalPage = ceil((product_count()) / $products_per_page);
+  $start_limit = ($page - 1) * $products_per_page;
+  $end_limit = $products_per_page;
+
+
+  $items = product_pagination($start_limit, $end_limit);
   $VIEW_NAME = "product/list.php";
 }
 

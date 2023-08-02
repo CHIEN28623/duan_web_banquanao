@@ -9,7 +9,7 @@
         <th></th>
         <th>Content</th>
         <th>Date</th>
-        <th>User Id</th>
+        <th>User Email</th>
         <th></th>
       </tr>
     </thead>
@@ -18,29 +18,35 @@
       foreach ($items as $item) {
         extract($item);
         ?>
-      <tr>
-        <th><input type="checkbox" name="ma_bl[]" value="<?= $commentId ?>"></th>
-        <td>
-          <?= $body ?>
-        </td>
-        <td>
-          <?= $created_at ?>
-        </td>
-        <td>
-          <?= $user_id ?>
-        </td>
-        <td>
-          <a href="index.php?btn_delete&commentId=<?= $commentId ?>&product_id=<?= $product_id ?>"
-            class="link-secondary remove">Xóa</a>
-        </td>
-      </tr>
-      <?php
+        <tr>
+          <th><input type="checkbox" name="ma_bl[]" value="<?= $comment_id ?>"></th>
+          <td>
+            <?= $body ?>
+          </td>
+          <td>
+            <?= $created_at ?>
+          </td>
+          <td>
+            <?= $email ?>
+          </td>
+          <td>
+            <a href="index.php?btn_delete&comment_id=<?= $comment_id ?>&product_id=<?= $product_id ?>"
+              class="link-secondary remove">Xóa</a>
+          </td>
+        </tr>
+        <?php
       }
       ?>
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="4">
+        <td colspan="5" class="mt-[100px]">
+          <?php require_once "../components/pagination.php" ?>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="5">
           <button id="check-all" type="button" class="button-red">Chọn tất cả</button>
           <button id="clear-all" type="button" class="button-white mx-5">Bỏ chọn tất cả</button>
           <button id="btn-delete" name="btn_delete" class="button-red">Xóa các mục chọn</button>

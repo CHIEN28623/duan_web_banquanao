@@ -33,6 +33,18 @@ function product_select_all()
   return pdo_query($sql);
 }
 
+function product_pagination($start_limit, $end_limit)
+{
+  $sql = "select * from products order by product_id desc limit $start_limit, $end_limit";
+  return pdo_query($sql);
+}
+
+function product_pagination_by_category_id($category_id, $start_limit, $end_limit)
+{
+  $sql = "select * from products where category_id = ? limit $start_limit, $end_limit";
+  return pdo_query($sql, $category_id);
+}
+
 function product_select_by_id($id)
 {
   $sql = "select * from products where product_id=?";

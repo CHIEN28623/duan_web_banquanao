@@ -36,10 +36,10 @@ require "search.php";
         </div>
         <p class="flex gap-3">
           <s class="pt-1 text-gray-900">
-            <?= number_format($price) ?> <span class="text-gray-500">VND</span>
+            <?= number_format($price, 0, ',', '.') ?> <span class="text-gray-500">VND</span>
           </s>
           <span class="pt-1 text-blue-500">
-            <?= number_format($price - $price * $discount / 100) ?> VND
+            <?= number_format($price - $price * $discount / 100, 0, ',', '.') ?> VND
           </span>
         </p>
       </a>

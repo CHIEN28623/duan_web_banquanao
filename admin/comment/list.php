@@ -6,8 +6,8 @@
       <tr>
         <th>Total Comments</th>
         <th>Product Name</th>
-        <th>First Date</th>
-        <th>Last Date</th>
+        <th>First Comment Date</th>
+        <th>Last Comment Date</th>
         <th></th>
       </tr>
     </thead>
@@ -16,29 +16,36 @@
       foreach ($items as $item) {
         extract($item);
         ?>
-        <tr>
-          <td>
-            <?= $quantity ?>
-          </td>
-          <td>
-            <?= $name ?>
-          </td>
-          <td>
-            <?= $firstDate ?>
-          </td>
-          <td>
-            <?= $lastDate ?>
-          </td>
+      <tr>
+        <td>
+          <?= $quantity ?>
+        </td>
+        <td>
+          <?= $name ?>
+        </td>
+        <td>
+          <?= $firstDate ?>
+        </td>
+        <td>
+          <?= $lastDate ?>
+        </td>
 
 
-          <td>
-            <a href="index.php?btn_edit&product_id=<?= $product_id ?>" class="link-secondary">Details</a>
-          </td>
-        </tr>
-        <?php
+        <td>
+          <a href="index.php?btn_edit&product_id=<?= $product_id ?>" class="link-secondary">Details</a>
+        </td>
+      </tr>
+      <?php
       }
       ?>
     </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5">
+          <?php require_once "../components/pagination.php" ?>
+        </td>
+      </tr>
+    </tfoot>
 
   </table>
 </form>

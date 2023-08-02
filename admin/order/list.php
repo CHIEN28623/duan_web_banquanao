@@ -4,9 +4,9 @@
   <table>
     <thead>
       <tr>
-        <th>id Order</th>
-        <th>Name User</th>
-        <th>Tutal_price</th>
+        <th>Id Order</th>
+        <th>Username</th>
+        <th>Total Price</th>
         <th>Address</th>
         <th>Phone</th>
         <th>Date</th>
@@ -16,44 +16,44 @@
     </thead>
     <tbody>
       <?php
-      
+
       foreach ($items as $item) {
 
         extract($item);
         ?>
-        <tr>
-          <td>
-            <?= $order_id ?>
-          </td>
-          <td>
-            <?= $fullname ?>
-          </td>
-          <td>
-            <?= $tutal_price ?>
-          </td>
-          <td>
-            <?= $address ?>
-          </td>
-          <td>
-            <?= $phone_number ?>
-          </td>
-          <td>
-            <?= $date ?>
-          </td>
-          <td>
+      <tr>
+        <td>
+          <?= $order_id ?>
+        </td>
+        <td>
+          <?= $fullname ?>
+        </td>
+        <td>
+          <?= $total_price ?>
+        </td>
+        <td>
+          <?= $address ?>
+        </td>
+        <td>
+          <?= $phone_number ?>
+        </td>
+        <td>
+          <?= date('d-m-Y', strtotime($created_at)) ?>
+        </td>
+        <td>
           <select>
             <option value="0">Đang chuẩn bị</option>
             <option value="1">Đang giao hàng</option>
             <option value="2">Giao hàng thành công</option>
-      </select>
-          </td>
+          </select>
+        </td>
 
-          <td>
-            <a href="">Lưu</a>
+        <td>
+          <a href="">Lưu</a>
           <a href="index.php?btn_edit&order_id=<?= $order_id ?>" class="link-secondary">Details</a>
-          </td>
-        </tr>
-        <?php
+        </td>
+      </tr>
+      <?php
       }
       ?>
     </tbody>

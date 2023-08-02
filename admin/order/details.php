@@ -20,7 +20,7 @@
         extract($item);
         ?>
         <tr>
-          <th><input type="checkbox" name="ma_bl[]" value="<?= $commentId ?>"></th>
+          <th><input type="checkbox" name="ma_bl[]" value="<?= $comment_id ?>"></th>
           <td>
             <?= $name ?>
           </td>
@@ -31,7 +31,7 @@
             <?= $price ?>
           </td>
           <td>
-            <a href="index.php?btn_delete&commentId=<?= $commentId ?>&product_id=<?= $product_id ?>"
+            <a href="index.php?btn_delete&comment_id=<?= $comment_id ?>&product_id=<?= $product_id ?>"
               class="link-secondary">Xóa</a>
           </td>
         </tr>

@@ -31,7 +31,7 @@ if (isset($_POST)) {
 
 
 <!-- component -->
-<form class="py-20 bg-gray-100  bg-opacity-50 h-screen" method="post" enctype="multipart/form-data" action="">
+<form class="py-20 bg-gray-100  bg-opacity-50" method="post" enctype="multipart/form-data" action="">
   <div class="mx-auto container max-w-3xl md:w-3/4 shadow-md">
     <div class="bg-gray-100 p-4 border-t-2 bg-opacity-5 border-red-400 rounded-t">
       <div class="max-w-sm mx-auto md:w-full md:mx-0">

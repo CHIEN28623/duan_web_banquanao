@@ -4,7 +4,7 @@ require_once 'pdo.php';
 
 function users_insert($fullname, $email, $password)
 {
-  $sql = "INSERT INTO users(fullname, email, password) VALUES(?,?,?)";
+  $sql = "INSERT INTO users(fullname, email, password, image, is_admin) VALUES(?,?,?, '/content/images/user/user.png', 0)";
   pdo_execute($sql, $fullname, $email, $password);
 }
 
@@ -89,4 +89,10 @@ function users_change_password($id, $password)
 {
   $sql = "UPDATE users SET password=? WHERE user_id=?";
   pdo_execute($sql, $password, $id);
+}
+
+function users_pagination($start_limit, $end_limit)
+{
+  $sql = "SELECT * FROM users ORDER BY user_id DESC LIMIT $start_limit, $end_limit";
+  return pdo_query($sql);
 }

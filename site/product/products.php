@@ -26,7 +26,6 @@ if (isset($_POST['add'])) {
     $_SESSION['cart'][$product_id]['image'] = $image;
   }
 
-  header("Refresh:0");
 
 }
 ?>
@@ -110,12 +109,13 @@ if (isset($_POST['add'])) {
           <?= $description ?>
         </p>
         <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
-          <div class="flex">
-            <span class="mr-3">Color</span>
-            <button class="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
-            <button class="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
-            <button class="border-2 border-gray-300 ml-1 bg-red-500 rounded-full w-6 h-6 focus:outline-none"></button>
-          </div>
+          <label for="size" class="block font-medium text-gray-700 w-[120px]">Select size:</label>
+          <select id="size" name="size"
+            class="block w-[200px] py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            <option value="S" class="text-gray-700">S</option>
+            <option value="M" class="text-gray-700">M</option>
+            <option value="XL" class="text-gray-700">XL</option>
+          </select>
 
         </div>
 
@@ -131,10 +131,10 @@ if (isset($_POST['add'])) {
         <div class="flex">
           <div class="flex gap-2">
             <s class="title-font font-medium text-xl text-gray-900">
-              <?= number_format($price); ?> VND
+              <?= number_format($price, 0, ',', '.'); ?> VND
             </s>
             <span class="title-font font-medium text-2xl text-gray-900">
-              <?= number_format($price - $price * $discount / 100); ?> VND
+              <?= number_format($price - $price * $discount / 100, 0, ',', '.'); ?> VND
             </span>
           </div>
           <button type="submit" name="add"

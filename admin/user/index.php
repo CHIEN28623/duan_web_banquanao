@@ -90,7 +90,9 @@ if (exist_param("btn_insert")) {
 
 
   $VIEW_NAME = "user/edit.php";
+
 } else if (exist_param("btn_delete")) {
+
   try {
     users_delete($user_id);
     $items = users_select_all();
@@ -103,11 +105,24 @@ if (exist_param("btn_insert")) {
   $item = users_select_by_id($user_id);
   extract($item);
   $VIEW_NAME = "user/edit.php";
-} else if (exist_param("btn_list")) {
-  $items = users_select_all();
-  $VIEW_NAME = "user/list.php";
-} else {
+
+} else if (exist_param("btn_new")) {
   $VIEW_NAME = "user/new.php";
+} else {
+
+  if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+  } else {
+    $page = 1;
+  }
+  $users_per_page = 4;
+  $totalPage = ceil((users_count()) / $users_per_page);
+  $start_limit = ($page - 1) * $users_per_page;
+  $end_limit = $users_per_page;
+
+
+  $items = users_pagination($start_limit, $end_limit);
+  $VIEW_NAME = "user/list.php";
 }
 
 require "../layout.php";

@@ -35,42 +35,42 @@ foreach ($cart as $item) {
       </div>
       <!-- product -->
       <?php foreach ($cart as $item) { ?>
-        <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
-          <div class="flex w-2/5">
-            <div class="w-20">
-              <img class="h-24" src="/<?= $item['image'] ?>" alt="">
-            </div>
-            <div class="flex flex-col justify-between ml-4 flex-grow">
-              <span class="font-bold text-sm">
-                <?= $item['name'] ?>
-              </span>
-              <span class="text-red-500 text-xs">
-                <?= $item['category'] ?>
-              </span>
-              <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
-            </div>
+      <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+        <div class="flex w-2/5">
+          <div class="w-20">
+            <img class="h-24" src="/<?= $item['image'] ?>" alt="">
           </div>
-          <div class="flex justify-center w-1/5">
-
-            <span class="mx-2 border text-center w-8">
-              <?= $item['quantity'] ?>
+          <div class="flex flex-col justify-between ml-4 flex-grow">
+            <span class="font-bold text-sm">
+              <?= $item['name'] ?>
             </span>
-
-
-
+            <span class="text-red-500 text-xs">
+              <?= $item['category'] ?>
+            </span>
+            <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
           </div>
-          <span class="text-center w-1/5 font-semibold text-sm">
-            <?= number_format($item['price']) ?> VND
-          </span>
-          <span class="text-center w-1/5 font-semibold text-sm">
-            <?= number_format($item['price'] * $item['quantity']) ?>
-            VND
-          </span>
-          <span class="text-center w-1/5 font-semibold text-sm text-white">
-            <a class="bg-red-400 p-3 rounded-md cursor-pointer"
-              href="/site/homepage?cart&remove&id=<?= $item['id'] ?>">Remove</a>
-          </span>
         </div>
+        <div class="flex justify-center w-1/5">
+
+          <span class="mx-2 border text-center w-8">
+            <?= $item['quantity'] ?>
+          </span>
+
+
+
+        </div>
+        <span class="text-center w-1/5 font-semibold text-sm">
+          <?= number_format($item['price'], 0, ',', '.') ?> VND
+        </span>
+        <span class="text-center w-1/5 font-semibold text-sm">
+          <?= number_format($item['price'] * $item['quantity'], 0, ',', '.') ?>
+          VND
+        </span>
+        <span class="text-center w-1/5 font-semibold text-sm text-white">
+          <a class="bg-red-400 p-3 rounded-md cursor-pointer"
+            href="/site/homepage?cart&remove&id=<?= $item['id'] ?>">Remove</a>
+        </span>
+      </div>
       <?php } ?>
 
       <!-- product -->
@@ -92,7 +92,7 @@ foreach ($cart as $item) {
       <div class="flex justify-between mt-10 mb-5">
         <span class="font-semibold text-sm uppercase">Totals</span>
         <span class="font-semibold text-sm">
-          <?= number_format($total) ?> VND
+          <?= number_format($total, 0, ',', '.') ?> VND
         </span>
       </div>
       <div>
@@ -106,19 +106,19 @@ foreach ($cart as $item) {
         <input type="text" id="promo" placeholder="Enter your code" class="border p-2 text-sm w-full">
       </div>
       <button class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">Apply</button>
-      <div class="border-t mt-8">
+      <div class="border-t mt-8 flex flex-col">
         <div class="flex font-semibold justify-between py-6 text-sm uppercase">
           <span>Total cost</span>
           <span>
             <?php if (number_format($total - 100000) > 0) {
-              echo number_format($total - 100000);
+              echo number_format($total - 100000 , 0, ',', '.');
             } else {
               echo 0;
             } ?> VND
           </span>
         </div>
-        <button
-          class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+        <a href="/site/order/index.php?address"
+          class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-center text-sm text-white uppercase w-full ">Checkout</a>
       </div>
     </div>
 

@@ -15,25 +15,49 @@ function statistic_product()
   return pdo_query($sql);
 }
 
-function statistic_comment()
+function statistic_comment_pagination($start_limit, $end_limit)
 {
-  $sql = "select p.name, p.product_id,
-    count(*) as quantity, 
-    min(cm.created_at) as firstDate, 
-    max(cm.created_at) as lastDate
-    from comments cm join products p on cm.product_id=p.product_id 
-     group by p.name, p.product_id
-     having quantity > 0";
+  $sql = "SELECT p.name, p.product_id,
+  COUNT(*) as quantity, 
+  MIN(cm.created_at) as firstDate, 
+  MAX(cm.created_at) as lastDate
+FROM comments cm 
+JOIN products p ON cm.product_id=p.product_id 
+GROUP BY p.name, p.product_id
+HAVING quantity > 0
+LIMIT $start_limit, $end_limit";
 
   return pdo_query($sql);
 }
-function statistic_order()  
+
+function statistic_comment()
+{
+  $sql = "SELECT p.name, p.product_id,
+  COUNT(*) as quantity, 
+  MIN(cm.created_at) as firstDate, 
+  MAX(cm.created_at) as lastDate
+FROM comments cm 
+JOIN products p ON cm.product_id=p.product_id 
+GROUP BY p.name, p.product_id
+HAVING quantity > 0";
+
+  return pdo_query($sql);
+}
+
+function count_products_has_comments()
+{
+  $sql = "SELECT count(*) FROM products p JOIN comments cm ON p.product_id=cm.product_id";
+  return pdo_query_value($sql);
+}
+
+function statistic_order()
 {
   $sql = " SELECT * from orders o  inner join users u on o.user_id = u.user_id 
   ";
   return pdo_query($sql);
 }
-function statistic_order_items(){
+function statistic_order_items()
+{
   $sql = " SELECT * from order_items oi inner join products p on oi.product_id=p.product_id ";
   return pdo_query($sql);
 }

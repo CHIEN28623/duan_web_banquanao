@@ -40,7 +40,7 @@
           <?= $is_admin == 1 ? 'Admin' : 'Customer' ?>
         </td>
         <td>
-          <a href="index.php?btn_edit&user_id=<?= $user_id ?>" class="link link-primary mr-3">Edit</a>
+          <a href="index.php?btn_edit&user_id=<?= $user_id ?>" class="link link-secondary mr-1">Edit</a>
           <a href="index.php?btn_delete&user_id=<?= $user_id ?>" class="link link-secondary remove">Remove</a>
 
         </td>
@@ -51,11 +51,18 @@
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="5">
+        <td colspan="7">
+          <?php
+          require_once "../components/pagination.php"
+            ?>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="7">
           <button id="check-all" type="button" class="button-red">Select all</button>
           <button id="clear-all" type="button" class="button-white mx-5">Unselect all</button>
           <button id="btn-delete" name="btn_delete" class="button-red">Delete all selection </button>
-          <a href="index.php" class="ml-4 link-primary">Add new user</a>
+          <a href="index.php?btn_new" class="ml-4 link-primary">Add new user</a>
         </td>
       </tr>
     </tfoot>

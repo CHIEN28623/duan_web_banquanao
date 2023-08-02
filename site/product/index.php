@@ -12,24 +12,24 @@ if (exist_param("account")) {
   require_once '../../dao/category.php';
   $categories = category_select_all();
 
-  if (isset($category_id)) {
-    $products = product_select_by_category($category_id);
-  } else {
+  if (!isset($category_id)) {
     $category_id = $categories[0]['category_id'];
-    $products = product_select_by_category($category_id);
   }
 
-  if (isset($filter)) {
-    if ($filter == "highToLow") {
-      usort($products, function ($a, $b) {
-        return $a['price'] - $b['price'];
-      });
-    } else if ($filter == "lowToHigh") {
-      usort($products, function ($a, $b) {
-        return $b['price'] - $a['price'];
-      });
-    }
+  $products_per_page = 4;
+
+  $totalPage = ceil(product_count_by_category($category_id) / $products_per_page);
+  if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+  } else {
+    $page = 1;
   }
+
+  $start_limit = ($page - 1) * $products_per_page;
+
+  $products = product_pagination_by_category_id($category_id, $start_limit, $products_per_page);
+
+
 
   $VIEW_NAME = "product/all_products.php";
 

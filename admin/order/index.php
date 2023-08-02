@@ -7,7 +7,7 @@ require "../../dao/statistic.php";
 extract($_REQUEST);
 if (exist_param("order_id")) {
   if (exist_param("btn_delete")) {
-    order_delete($commentId);
+    // order_delete($comment_id);
     $MESSAGE = "Delete successfully!";
   }
   $items = order_item_select_by_order($order_id);

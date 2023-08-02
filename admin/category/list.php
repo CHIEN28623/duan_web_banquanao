@@ -5,9 +5,8 @@
     <thead>
       <tr>
         <th></th>
-        <th>Category Id</th>
         <th>Category Name</th>
-        <th></th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -15,20 +14,18 @@
       foreach ($items as $item) {
         extract($item);
         ?>
-        <tr>
-          <th><input type="checkbox" name="category_id[]" value="<?= $category_id ?>"></th>
-          <td>
-            <?= $category_id ?>
-          </td>
-          <td>
-            <?= $name ?>
-          </td>
-          <td>
-            <a href="index.php?btn_edit&category_id=<?= $category_id ?>" class="link-secondary">Edit</a>
-            <a href="index.php?btn_delete&category_id=<?= $category_id ?>" class="link-secondary remove">Remove</a>
-          </td>
-        </tr>
-        <?php
+      <tr>
+        <th><input type="checkbox" name="category_id[]" value="<?= $category_id ?>"></th>
+
+        <td>
+          <?= $name ?>
+        </td>
+        <td>
+          <a href="index.php?btn_edit&category_id=<?= $category_id ?>" class="link-secondary">Edit</a>
+          <a href="index.php?btn_delete&category_id=<?= $category_id ?>" class="link-secondary remove">Remove</a>
+        </td>
+      </tr>
+      <?php
       }
       ?>
     </tbody>

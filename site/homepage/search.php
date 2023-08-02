@@ -8,9 +8,8 @@
           d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
       </svg>
     </div>
-    <input type="search" id="default-search" name="search"
-      class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:focus:border-blue-500"
-      placeholder="Search products..." required>
+    <input type="search" id="default-search" name="search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 outline-none 
+      placeholder=" Search products...">
     <button type="submit"
       class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 0">Search</button>
   </div>
@@ -53,10 +52,10 @@
             </div>
             <p class="flex gap-3">
               <s class="pt-1 text-gray-900">
-                <?= number_format($price) ?> <span class="text-gray-500">VND</span>
+                <?= number_format($price, 0, ',', '.') ?> <span class="text-gray-500">VND</span>
               </s>
               <span class="pt-1 text-red-500">
-                <?= number_format($price - $price * $discount / 100) ?> VND
+                <?= number_format($price - $price * $discount / 100, 0, ',', '.') ?> VND
               </span>
             </p>
           </a>

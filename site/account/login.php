@@ -92,7 +92,7 @@ if ($_POST) {
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 placeholder="name@company.com" required <?php if (isset($_COOKIE['email']))
                   echo "value=" . $_COOKIE['email'] ?> />
-                <?php
+              <?php
                 if (isset($error['email'])) {
                   echo '<p class="alert">' . $error['email'] . '</p>';
                 }
@@ -104,7 +104,7 @@ if ($_POST) {
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-[#2563eb] block w-full p-2.5"
                 required value="<?php if (isset($_COOKIE['pass']))
                   echo $_COOKIE['pass'] ?>" />
-                <?php
+              <?php
                 if (isset($error['password'])) {
                   echo '<p class="alert">' . $error['password'] . '</p>';
                 }
@@ -112,7 +112,7 @@ if ($_POST) {
             </div>
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <input type="checkbox" name="remember" id="remember" checked />
+                <input type="checkbox" name="remember" id="remember" />
                 <label for="remember">Remember me?</label>
               </div>
               <a href="#" class="text-sm font-medium text-primary-600 hover:underline">Forgot password?</a>

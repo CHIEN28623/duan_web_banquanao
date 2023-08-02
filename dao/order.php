@@ -31,7 +31,7 @@ function order_select_all()
 
 function order_select_by_id($id)
 {
-  $sql = "SELECT * FROM order_items WHERE user_id=?";
+  $sql = "SELECT * FROM orders WHERE user_id=?";
   return pdo_query($sql, $id);
 }
 
@@ -48,15 +48,17 @@ function order_item_select_by_order($order_id)
 }
 
 
-function order_user_insert($user_id, $tutal_price, $address, $phone_number, $date ){
-  $sql = "INSERT INTO orders(user_id, tutal_price, address, phone_number, date ) VALUES(?,?,?,?,?)";
-  pdo_execute($sql, $user_id, $tutal_price, $address, $phone_number, $date );
+function order_user_insert($user_id, $tutal_price, $address, $phone_number, $date)
+{
+  $sql = "INSERT INTO orders(user_id, total_price, address, phone_number, date ) VALUES(?,?,?,?,?)";
+  pdo_execute($sql, $user_id, $tutal_price, $address, $phone_number, $date);
 }
-function insert_sanpham($user_id, $tutal_price, $address, $phone_number, $date){
-        $sql = "insert into orders(user_id, tutal_price, address, phone_number, date ) 
-        values ('$user_id','$tutal_price','$address','$phone_number','$date')";
-        pdo_execute($sql );
-    }
+function insert_sanpham($user_id, $tutal_price, $address, $phone_number)
+{
+  $sql = "insert into orders(user_id, total_price, address, phone_number ) 
+        values ($user_id,'$tutal_price','$address','$phone_number')";
+  pdo_execute($sql);
+}
 
 
 function order_count_all()

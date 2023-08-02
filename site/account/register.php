@@ -14,8 +14,10 @@ if ($_POST) {
       $error['exist'] = "Email is exist";
     } else {
       users_insert($fullname, $email, $password);
-      echo '<script>alert("Đăng ký thành công")</script>';
-      header("location: login.php");
+      echo '<script>alert("Đăng ký thành công")
+      
+      window.location.href = "/site/account/login.php";
+      </script>';
     }
   }
 }
@@ -56,7 +58,7 @@ if ($_POST) {
           <form class="space-y-4 md:space-y-6" action="" method="post">
             <div>
               <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
-              <input type="email" name="email" id="email"
+              <input type="email" name="email" id="email" value="<?= $email ?>"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 placeholder="name@company.com" required="" />
               <?php if (isset($error['exist'])) {
@@ -66,7 +68,7 @@ if ($_POST) {
             <div>
               <label for="fullname" class="block mb-2 text-sm font-medium text-gray-900 ">Full
                 name</label>
-              <input type="fullname" name="fullname" id="fullname"
+              <input type="fullname" name="fullname" id="fullname" value="<?= $fullname ?>"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 placeholder="Your fullname" required="" />
             </div>
