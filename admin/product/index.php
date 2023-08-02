@@ -7,13 +7,53 @@ extract($_REQUEST);
 
 if (exist_param('btn_insert')) {
   // Khi có tham số truyền vào là btn_insert thì sẽ lấy dữ liệu và insert
-  $image = save_file("image", "/content/images/product/"); //image là name của input type file
-  $imageUrl = 'content/images/product/' . $image;
+
+  //validate image file
+  $defaultImage = 'content/images/product/default-image.jpeg';
+  $imageUrl = $defaultImage;
+  $image = $_FILES['image']['name'];
+  $target_dir = "../../content/images/product/";
+  $target_file = $target_dir . basename($_FILES["image"]["name"]);
+  $uploadOk = 1;
+
+  // Check đuôi mở rộng của tệp
+  $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+  // Check file size
+
+  if ($_FILES["image"]["size"] > 100000) {
+    $MESSAGE = "Image size too large!";
+    $uploadOk = 0;
+  }
+
+  // Allow certain file formats
+  if (
+    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" && isset($_FILES["image"]["name"])
+  ) {
+    $MESSAGE = "Only JPG, JPEG, PNG & GIF files are allowed!";
+    $uploadOk = 0;
+  }
+  // UPload file 
+  if ($uploadOk == 1) {
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+      $imageUrl = 'content/images/product/' . $image;
+    } else {
+      $MESSAGE = "Sorry, there was an error uploading your file.";
+    }
+  }
+
+  // Nếu không upload ảnh thì lấy ảnh mặc định
+  if (strlen($image) == 0) {
+    $imageUrl = $defaultImage;
+    $uploadOk = 1;
+    $MESSAGE = "";
+  }
 
   // Kiểm tra dữ liệu
   if (strlen($name) == 0 || strlen($price) == 0 || strlen($discount) == 0) {
     $MESSAGE = "Please enter full information!";
-  } else {
+  } else if ($uploadOk == 1) {
     try {
       // Thực hiện insert và giải phóng biến
       product_insert($name, $price, $category_id, $imageUrl, $description, $discount);
@@ -30,18 +70,52 @@ if (exist_param('btn_insert')) {
 
 } else if (exist_param('btn_update')) {
   // Khi có tham số truyền vào là btn_update thì sẽ lấy dữ liệu và update
-
+  //validate image file
+  $defaultImage = 'content/images/product/default-image.jpeg';
   $imageUrl = $defaultImage;
+  $image = $_FILES['image']['name'];
+  $target_dir = "../../content/images/product/";
+  $target_file = $target_dir . basename($_FILES["image"]["name"]);
+  $uploadOk = 1;
 
-  // Nếu có chọn ảnh mới thì lấy ảnh mới
-  if (!empty($_FILES['image']['name'])) {
-    $imageName = save_file("image", "/content/images/product/"); //image là name của input type file
-    $imageUrl = 'content/images/product/' . $imageName;
+  // Check đuôi mở rộng của tệp
+  $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+  // Check file size
+
+  if ($_FILES["image"]["size"] > 100000) {
+    $MESSAGE = "Image size too large!";
+    $uploadOk = 0;
   }
+
+  // Allow certain file formats
+  if (
+    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" && isset($_FILES["image"]["name"])
+  ) {
+    $MESSAGE = "Only JPG, JPEG, PNG & GIF files are allowed!";
+    $uploadOk = 0;
+  }
+  // UPload file 
+  if ($uploadOk == 1) {
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+      $imageUrl = 'content/images/product/' . $image;
+    } else {
+      $MESSAGE = "Sorry, there was an error uploading your file.";
+    }
+  }
+
+  // Nếu không upload ảnh thì lấy ảnh mặc định
+  if (strlen($image) == 0) {
+    $imageUrl = $defaultImage;
+    $uploadOk = 1;
+    $MESSAGE = "";
+  }
+
 
   if (strlen($name) == 0 || strlen($price) == 0 || strlen($discount) == 0) {
     $MESSAGE = "Please enter full information!";
-  } else {
+  } else if ($uploadOk == 1) {
     try {
       product_update($name, $price, $category_id, $imageUrl, $description, $discount, $product_id);
       unset($name, $price, $category_id, $image, $description, $discount);

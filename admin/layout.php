@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (is_logged_in() && is_admin()) {
+} else {
+  header("Location: /site/homepage/index.php");
+}
+
+// exit;
+?>
 <!DOCTYPE html>
 <html>
 

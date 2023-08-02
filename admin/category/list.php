@@ -25,7 +25,7 @@
           </td>
           <td>
             <a href="index.php?btn_edit&category_id=<?= $category_id ?>" class="link-secondary">Edit</a>
-            <a href="index.php?btn_delete&category_id=<?= $category_id ?>" class="link-secondary">Remove</a>
+            <a href="index.php?btn_delete&category_id=<?= $category_id ?>" class="link-secondary remove">Remove</a>
           </td>
         </tr>
         <?php

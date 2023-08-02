@@ -19,30 +19,30 @@
       foreach ($items as $item) {
         extract($item);
         ?>
-        <tr>
-          <th><input type="checkbox" name="category_id[]" value="<?= $category_id ?>"></th>
-          <td>
-            <?= $product_id ?>
-          </td>
-          <td>
-            <?= $name ?>
-          </td>
-          <td>
-            <img src="/<?= $image ?>" alt="" style="width: 90px; height: 90px" class="ml-4">
-          </td>
+      <tr>
+        <th><input type="checkbox" name="category_id[]" value="<?= $category_id ?>"></th>
+        <td>
+          <?= $product_id ?>
+        </td>
+        <td>
+          <?= $name ?>
+        </td>
+        <td>
+          <img src="/<?= $image ?>" alt="" style="width: 90px; height: 90px" class="ml-4">
+        </td>
 
-          <td>
-            <?= $price ?>
-          </td>
-          <td>
-            <?= $view ?>
-          </td>
-          <td>
-            <a href="index.php?btn_edit&product_id=<?= $product_id ?>" class="link link-primary mr-3">Edit</a>
-            <a href="index.php?btn_delete&product_id=<?= $product_id ?>" class="link link-secondary">Remove</a>
-          </td>
-        </tr>
-        <?php
+        <td>
+          <?= $price ?> VND
+        </td>
+        <td>
+          <?= $view ?>
+        </td>
+        <td>
+          <a href="index.php?btn_edit&product_id=<?= $product_id ?>" class="link link-primary mr-3">Edit</a>
+          <a href="index.php?btn_delete&product_id=<?= $product_id ?>" class="link link-secondary remove">Remove</a>
+        </td>
+      </tr>
+      <?php
       }
       ?>
     </tbody>

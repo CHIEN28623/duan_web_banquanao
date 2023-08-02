@@ -18,23 +18,23 @@
       foreach ($items as $item) {
         extract($item);
         ?>
-        <tr>
-          <th><input type="checkbox" name="ma_bl[]" value="<?= $commentId ?>"></th>
-          <td>
-            <?= $body ?>
-          </td>
-          <td>
-            <?= $created_at ?>
-          </td>
-          <td>
-            <?= $user_id ?>
-          </td>
-          <td>
-            <a href="index.php?btn_delete&commentId=<?= $commentId ?>&product_id=<?= $product_id ?>"
-              class="link-secondary">Xóa</a>
-          </td>
-        </tr>
-        <?php
+      <tr>
+        <th><input type="checkbox" name="ma_bl[]" value="<?= $commentId ?>"></th>
+        <td>
+          <?= $body ?>
+        </td>
+        <td>
+          <?= $created_at ?>
+        </td>
+        <td>
+          <?= $user_id ?>
+        </td>
+        <td>
+          <a href="index.php?btn_delete&commentId=<?= $commentId ?>&product_id=<?= $product_id ?>"
+            class="link-secondary remove">Xóa</a>
+        </td>
+      </tr>
+      <?php
       }
       ?>
     </tbody>

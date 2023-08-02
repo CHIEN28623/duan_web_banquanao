@@ -59,7 +59,7 @@ function delete_cookie($name)
  **/
 function is_admin()
 {
-  if ($_SESSION['isAdmin'] == 1) {
+  if ($_SESSION['is_admin'] == 1) {
     return true;
   }
   return false;

@@ -20,8 +20,6 @@ if (exist_param("btn_insert")) {
   // Nếu trống thì lấy ảnh mặc định
   $imageUrl = strlen($imageUrl) > 0 ? $imageUrl : '/content/images/user/user.png';
 
-  echo $imageUrl;
-
   if ($password !== $passwordConfirm) {
     $MESSAGE = "Password and confirm password must be the same!";
   } else if (strlen($fullname) == 0 || strlen($email) == 0 || strlen($password) == 0) {
@@ -41,14 +39,55 @@ if (exist_param("btn_insert")) {
   $VIEW_NAME = "user/new.php";
 } else if (exist_param("btn_update")) {
 
-  $imageUrl;
+  $defaultImage = '/content/images/user/user.png';
+  $imageUrl = $defaultImage;
+  $image = $_FILES['image']['name'];
+  $target_dir = "../../content/images/user/";
+  $target_file = $target_dir . basename($_FILES["image"]["name"]);
+  $uploadOk = 1;
 
-  if (!empty($_FILES['file']['image'])) {
-    $image = save_file("image", "/content/images/user/");
-    $imageUrl = '/content/images/user/' . $image;
+  // check đuôi file
+  $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+  if ($_FILES["image"]["size"] > 100000) {
+    $MESSAGE = "Image size too large!";
+    $uploadOk = 0;
   }
 
-  echo $imageUrl;
+
+  // Allow certain file formats
+  if (
+    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif"
+  ) {
+    $MESSAGE = "Only JPG, JPEG, PNG & GIF files are allowed!";
+    echo $imageFileType;
+    $uploadOk = 0;
+  }
+
+  // upload file
+  if ($uploadOk == 1) {
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+      $imageUrl = '/content/images/user/' . $image;
+    } else {
+      $MESSAGE = "Sorry, there was an error uploading your file.";
+    }
+  }
+
+  if ($password !== $passwordConfirm) {
+    $MESSAGE = "Password and confirm password must be the same!";
+  } else if (strlen($fullname) == 0 || strlen($email) == 0 || strlen($password) == 0) {
+    $MESSAGE = "Please enter full information!";
+  } else if ($uploadOk == 1) {
+    try {
+      users_update($fullname, $email, $imageUrl, $password, $is_admin, $user_id);
+      unset($fullname, $email, $imageUrl, $password, $is_admin);
+      $MESSAGE = "Update successfully!";
+    } catch (Exception $exc) {
+      $MESSAGE = "Update failed!";
+    }
+  }
+
 
   $VIEW_NAME = "user/edit.php";
 } else if (exist_param("btn_delete")) {
