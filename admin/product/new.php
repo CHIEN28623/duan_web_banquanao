@@ -3,10 +3,6 @@
 <form action="index.php" method="post" enctype="multipart/form-data" class="pl-24 mt-10 pr-10">
   <div class="grid grid-cols-2">
     <div class="admin-input">
-      <label>Product Id</label>
-      <input name="product_id" readonly value="Auto generated">
-    </div>
-    <div class="admin-input">
       <label>Product Name</label>
       <input name="name">
     </div>
@@ -21,6 +17,18 @@
     <div class="admin-input">
       <label>Image</label>
       <input name="image" type="file">
+    </div>
+    <div class="admin-input">
+      <label>Số lượng size S</label>
+      <input name="size_S" type="number">
+    </div>
+    <div class="admin-input">
+      <label>Số lượng size M</label>
+      <input name="size_M" type="number">
+    </div>
+    <div class="admin-input">
+      <label>Số lượng size L</label>
+      <input name="size_L" type="number">
     </div>
     <div class="admin-input w-[450px]">
       <label>Category</label>

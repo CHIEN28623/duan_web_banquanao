@@ -5,7 +5,7 @@
     if ($page > 1) {
       ?>
     <li>
-      <a href="index.php?category_id=<?= $category_id ?>&page=<?= $page - 1 ?>"
+      <a href="index.php?filter=<?= $filter ?>&category_id=<?= $category_id ?>&page=<?= $page - 1 ?>"
         class="block py-2 px-4 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 active:bg-blue-500 active:text-white font-medium">
         Previous
       </a>
@@ -17,7 +17,7 @@
     for ($i = 1; $i <= $totalPage; $i++) {
       ?>
     <li>
-      <a href="index.php?category_id=<?= $category_id ?>&page=<?= $i ?>"
+      <a href="index.php?filter=<?= $filter ?>&category_id=<?= $category_id ?>&page=<?= $i ?>"
         class="block py-2 px-4  border border-gray-300 rounded-lg text-gray-700   active:text-white font-medium <?= ($i == $page) ? 'bg-blue-500 text-white' : 'bg-white hover:bg-gray-100' ?>">
         <?= $i ?>
       </a>
@@ -29,7 +29,7 @@
     if ($page < $totalPage) {
       ?>
     <li>
-      <a href="index.php?category_id=<?= $category_id ?>&page=<?= $page + 1 ?>"
+      <a href="index.php?filter=<?= $filter ?>&category_id=<?= $category_id ?>&page=<?= $page + 1 ?>"
         class="block py-2 px-4 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 active:bg-blue-500 active:text-white font-medium">
         Next
       </a>

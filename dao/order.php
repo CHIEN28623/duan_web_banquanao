@@ -60,7 +60,6 @@ function insert_sanpham($user_id, $tutal_price, $address, $phone_number)
   pdo_execute($sql);
 }
 
-
 function order_count_all()
 {
   $sql = "SELECT count(*) FROM order";

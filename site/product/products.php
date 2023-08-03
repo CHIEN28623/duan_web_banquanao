@@ -128,21 +128,24 @@ if (isset($_POST['add'])) {
 
         </div>
 
-        <div class="flex">
+        <div class="flex flex-col gap-4">
           <div class="flex gap-2">
             <s class="title-font font-medium text-xl text-gray-900">
               <?= number_format($price, 0, ',', '.'); ?> VND
             </s>
-            <span class="title-font font-medium text-2xl text-gray-900">
+            <span class="title-font font-medium text-2xl text-red-500">
               <?= number_format($price - $price * $discount / 100, 0, ',', '.'); ?> VND
             </span>
           </div>
-          <button type="submit" name="add"
-            class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Add
-            to cart</button>
+          <div>
+            <button type="submit" name="add"
+              class="flex mr-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Add
+              to cart</button>
+          </div>
         </div>
-      </form>
     </div>
+    </form>
+  </div>
   </div>
 </section>
 

@@ -41,7 +41,19 @@ function product_pagination($start_limit, $end_limit)
 
 function product_pagination_by_category_id($category_id, $start_limit, $end_limit)
 {
-  $sql = "select * from products where category_id = ? limit $start_limit, $end_limit";
+  $sql = "select * from products where category_id = ? order by created_at desc limit $start_limit, $end_limit";
+  return pdo_query($sql, $category_id);
+}
+
+function product_pagination_by_category_price_desc($category_id, $start_limit, $end_limit)
+{
+  $sql = "select * from products where category_id = ? order by price desc limit $start_limit, $end_limit"; 
+  return pdo_query($sql, $category_id);
+}
+
+function product_pagination_by_category_price_asc($category_id, $start_limit, $end_limit)
+{
+  $sql = "select * from products where category_id = ? order by price asc limit $start_limit, $end_limit";
   return pdo_query($sql, $category_id);
 }
 

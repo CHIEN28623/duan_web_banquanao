@@ -6,7 +6,7 @@
     <thead>
       <tr>
         <th></th>
-        <th>Product Id</th>
+        <t>Product Id</t>
         <th>Product Name</th>
         <th>Product Image</th>
         <th>Product Price</th>

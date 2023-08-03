@@ -77,7 +77,7 @@ foreach ($cart as $item) {
 
 
 
-      <a href="/site/homepage" class="flex font-semibold text-indigo-600 text-sm mt-10">
+      <a href="/site/product" class="flex font-semibold text-indigo-600 text-sm mt-10">
 
         <svg class="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512">
           <path
@@ -111,7 +111,7 @@ foreach ($cart as $item) {
           <span>Total cost</span>
           <span>
             <?php if (number_format($total - 100000) > 0) {
-              echo number_format($total - 100000 , 0, ',', '.');
+              echo number_format($total - 100000, 0, ',', '.');
             } else {
               echo 0;
             } ?> VND
