@@ -18,34 +18,35 @@
       <?php
       foreach ($items as $item) {
         extract($item);
+
         ?>
-      <tr>
-        <th><input type="checkbox" name="user_id" value="<?= $user_id ?>"></th>
-        <td>
-          <?= $user_id ?>
-        </td>
-        <td>
-          <?= $fullname ?>
-        </td>
-        <td>
-          <?= $email ?>
-        </td>
+        <tr>
+          <th><input type="checkbox" name="user_id" value="<?= $user_id ?>"></th>
+          <td>
+            <?= $user_id ?>
+          </td>
+          <td>
+            <?= $fullname ?>
+          </td>
+          <td>
+            <?= $email ?>
+          </td>
 
-        <td>
-          <img src="<?= $image ?>" alt="" style="width: 90px; height: 90px" class="ml-4">
+          <td>
+            <img src="<?= $image ?>" alt="" style="width: 90px; height: 90px" class="ml-4">
 
-        </td>
+          </td>
 
-        <td>
-          <?= $is_admin == 1 ? 'Admin' : 'Customer' ?>
-        </td>
-        <td>
-          <a href="index.php?btn_edit&user_id=<?= $user_id ?>" class="link link-secondary mr-1">Edit</a>
-          <a href="index.php?btn_delete&user_id=<?= $user_id ?>" class="link link-secondary remove">Remove</a>
+          <td>
+            <?= $is_admin == 1 ? 'Admin' : 'Customer' ?>
+          </td>
+          <td>
+            <a href="index.php?btn_edit&user_id=<?= $user_id ?>" class="link link-secondary mr-1">Edit</a>
+            <a href="index.php?btn_delete&user_id=<?= $user_id ?>" class="link link-secondary remove">Remove</a>
 
-        </td>
-      </tr>
-      <?php
+          </td>
+        </tr>
+        <?php
       }
       ?>
     </tbody>

@@ -100,7 +100,7 @@ if (exist_param("btn_insert")) {
   } catch (Exception $exc) {
     $MESSAGE = "Removed failed!";
   }
-  $VIEW_NAME = "user/list.php";
+  $VIEW_NAME = "user/index.php";
 } else if (exist_param("btn_edit")) {
   $item = users_select_by_id($user_id);
   extract($item);
@@ -121,7 +121,7 @@ if (exist_param("btn_insert")) {
   $end_limit = $users_per_page;
 
 
-  $items = users_pagination($start_limit, $end_limit);
+  $items = users_pagination($_SESSION['user_id'], $start_limit, $end_limit);
   $VIEW_NAME = "user/list.php";
 }
 

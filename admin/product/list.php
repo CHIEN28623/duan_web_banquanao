@@ -1,29 +1,29 @@
 <h3 class="font-bold text-3xl text-center pt-8 text-neutral-700">Product Manager</h3>
 
 
-<form action="index.php" method="post" class="admin pl-24 mt-10">
+<form action="index.php" method="post" class="admin pl-10 mt-10">
   <table>
     <thead>
       <tr>
         <th></th>
-        <t>Product Id</t>
         <th>Product Name</th>
         <th>Product Image</th>
         <th>Product Price</th>
         <th>Product View</th>
+        <th>Size S Quantity</th>
+        <th>Size M Quantity</th>
+        <th>Size L Quantity</th>
+
         <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="products">
       <?php
       foreach ($items as $item) {
         extract($item);
         ?>
         <tr>
-          <th><input type="checkbox" name="category_id[]" value="<?= $category_id ?>"></th>
-          <td>
-            <?= $product_id ?>
-          </td>
+          <td><input type="checkbox" name="category_id[]" value="<?= $category_id ?>"></td>
           <td>
             <?= $name ?>
           </td>
@@ -37,6 +37,16 @@
           <td>
             <?= $view ?>
           </td>
+          <td>
+            <?= $size_S ?>
+          </td>
+          <td>
+            <?= $size_M ?>
+          </td>
+          <td>
+            <?= $size_L ?>
+          </td>
+
           <td>
             <a href="index.php?btn_edit&product_id=<?= $product_id ?>" class="link link-secondary mr-1">Edit</a>
             <a href="index.php?btn_delete&product_id=<?= $product_id ?>" class="link link-secondary remove">Remove</a>

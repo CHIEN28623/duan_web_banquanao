@@ -1,7 +1,7 @@
 <h3 class="font-bold text-3xl text-center pt-8 text-neutral-700">Category Manager</h3>
 
 <form action="category" method="post" class="pl-24 mt-10">
-  <div class="admin-input">
+  <div class="admin-input hidden">
     <label>Category Id</label>
     <input name="category_id" value="<?= $category_id ?>" readonly>
   </div>
