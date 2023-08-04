@@ -20,7 +20,6 @@ if (exist_param('delete')) {
   $VIEW_NAME = "order/list.php";
 } else if (exist_param("address")) {
   require_once '../../dao/user.php';
-  $users = users_select_id($_SESSION['user_id']);
   $VIEW_NAME = "order/address.php";
   $_SESSION['test'] = $_POST['phone_number'];
 } else if (exist_param("delete")) {

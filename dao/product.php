@@ -47,7 +47,7 @@ function product_pagination_by_category_id($category_id, $start_limit, $end_limi
 
 function product_pagination_by_category_price_desc($category_id, $start_limit, $end_limit)
 {
-  $sql = "select * from products where category_id = ? order by price desc limit $start_limit, $end_limit"; 
+  $sql = "select * from products where category_id = ? order by price desc limit $start_limit, $end_limit";
   return pdo_query($sql, $category_id);
 }
 
@@ -81,6 +81,12 @@ function product_select_by_category($id)
 {
   $sql = "select * from products where category_id = ?";
   return pdo_query($sql, $id);
+}
+
+function product_select_by_category_except_product_id($category_id, $id)
+{
+  $sql = "select * from products where category_id = ? and product_id != ?";
+  return pdo_query($sql, $category_id, $id);
 }
 
 function product_select_by_keyword($keyword)

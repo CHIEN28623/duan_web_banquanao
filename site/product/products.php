@@ -9,24 +9,41 @@ require_once '../../dao/comment.php';
 extract(product_select_by_id($_GET['id']));
 product_increase_view($product_id);
 $category = category_select_by_id($category_id)['name'];
+$_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
 
 
 if (isset($_POST['add'])) {
   extract($_POST);
 
   // add cart to session
-  if (isset($_SESSION['cart'][$product_id])) {
-    $_SESSION['cart'][$product_id]['quantity'] += $quantity;
-  } else {
-    $_SESSION['cart'][$product_id]['id'] = $product_id;
-    $_SESSION['cart'][$product_id]['quantity'] = $quantity;
-    $_SESSION['cart'][$product_id]['category'] = $category;
-    $_SESSION['cart'][$product_id]['name'] = $name;
-    $_SESSION['cart'][$product_id]['price'] = $price - $price * $discount / 100;
-    $_SESSION['cart'][$product_id]['image'] = $image;
+
+  $new_cart = array(
+    'id' => $product_id,
+    'quantity' => $quantity,
+    'size' => $size,
+    'category' => $category,
+    'name' => $name,
+    'price' => $price - $price * $discount / 100,
+    'image' => $image
+  );
+
+  // Nếu trùng size và id thì tăng số lượng
+  $isNotExist = true;
+  foreach ($_SESSION['cart'] as $key => $item) {
+    if ($item['id'] == $product_id && $item['size'] == $size) {
+      $isNotExist = false;
+      $_SESSION['cart'][$key]['quantity'] += $quantity;
+      echo "<script>window.location.href='product';</script>";
+      exit;
+    }
+  }
+
+  if ($isNotExist) {
+    array_push($_SESSION['cart'], $new_cart);
   }
 
 
+  echo "<script>window.location.href='product';</script>";
 }
 ?>
 
@@ -114,7 +131,7 @@ if (isset($_POST['add'])) {
             class="block w-[200px] py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
             <option value="S" class="text-gray-700">S</option>
             <option value="M" class="text-gray-700">M</option>
-            <option value="XL" class="text-gray-700">XL</option>
+            <option value="L" class="text-gray-700">L</option>
           </select>
 
         </div>
@@ -152,6 +169,6 @@ if (isset($_POST['add'])) {
 <?php
 $comments = comments_select_by_product($product_id);
 require "comments.php";
-$items = product_select_by_category($category_id);
+$items = product_select_by_category_except_product_id($category_id, $_GET['id']);
 require "moreProducts.php"
   ?>

@@ -46,7 +46,7 @@
         <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <?php foreach ($products as $product) { ?>
           <a class="flex flex-col items-center justify-center w-full max-w-lg mx-auto"
-            href="index.php?product-details&id=<?= $product['product_id'] ?>">
+            href="/site/product/index.php?product-details&id=<?= $product['product_id'] ?>">
             <img class="object-cover w-full rounded-md cursor-pointer hover:grow" src="/<?= $product['image'] ?>"
               alt="T-Shirt">
             <h4 class="mt-2 text-lg font-medium text-gray-700 ">
