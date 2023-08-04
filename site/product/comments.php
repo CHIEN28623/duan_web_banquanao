@@ -24,53 +24,36 @@ if (isset($_POST['newComment'])) {
       </div>
       <button type="submit" <?php if (!is_logged_in())
         echo "disabled" ?>
-          class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-sky-500 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800 disabled:opacity-40 disabled:bg-slate-400 cursor-pointer">
-          Post comment
-        </button>
+        class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-sky-500 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800 disabled:opacity-40 disabled:bg-slate-400 cursor-pointer">
+        Post comment
+      </button>
       <?php if (!is_logged_in())
         echo "<span class='text-red-400'>You need log in to comment!</span>" ?>
-      </form>
-      <h3>Or</h3>
-      <form class="mb-6 flex items-center gap-7 rounded-[6px] bg-white px-5 py-9" method="post" action="">
-        <div class="rating">
-          <ion-icon class="s1" name="star"></ion-icon>
-          <ion-icon class="s2" name="star"></ion-icon>
-          <ion-icon class="s3" name="star"></ion-icon>
-          <ion-icon class="s4" name="star"></ion-icon>
-          <ion-icon class="s5" name="star"></ion-icon>
+    </form>
 
-        </div>
-        <button type="submit" <?php if (!is_logged_in())
-        echo "disabled" ?>
-          class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-sky-500 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800 disabled:opacity-40 disabled:bg-slate-400 cursor-pointer">
-          Rating
-        </button>
-      <?php if (!is_logged_in())
-        echo "<span class='text-red-400'>You need log in to comment!</span>" ?>
-      </form>
 
     <?php foreach ($comments as $c) {
         extract($c);
         extract(users_select_by_id($user_id));
         ?>
 
-      <article class="p-6 mb-6 text-base bg-white rounded-lg ">
-        <div class="flex justify-between items-center mb-2 relative">
-          <div class="flex items-center">
-            <p class="inline-flex items-center mr-3 text-sm text-gray-900 "><img class="mr-2 w-6 h-6 rounded-full"
-                src="<?= $image ?>" alt="Michael Gough"><?= $fullname ?>
-            </p>
-            <p class=" text-sm text-gray-600 "><time pubdate datetime=" 2022-02-08" title="February 8th, 2022">
-                <?= $created_at ?>
-              </time></p>
-          </div>
-
+    <article class="p-6 mb-6 text-base bg-white rounded-lg ">
+      <div class="flex justify-between items-center mb-2 relative">
+        <div class="flex items-center">
+          <p class="inline-flex items-center mr-3 text-sm text-gray-900 "><img class="mr-2 w-6 h-6 rounded-full"
+              src="<?= $image ?>" alt="Michael Gough"><?= $fullname ?>
+          </p>
+          <p class=" text-sm text-gray-600 "><time pubdate datetime=" 2022-02-08" title="February 8th, 2022">
+              <?= $created_at ?>
+            </time></p>
         </div>
-        <p class="text-gray-500 ">
-          <?= $body ?>
-        </p>
 
-      </article>
+      </div>
+      <p class="text-gray-500 ">
+        <?= $body ?>
+      </p>
+
+    </article>
     <?php } ?>
 
   </div>

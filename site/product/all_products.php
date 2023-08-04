@@ -5,16 +5,16 @@
         <?php
         foreach ($categories as $category) {
           ?>
-          <a href='index.php?category_id=<?= $category['category_id'] ?>' class='block font-medium  <?php if ($category_id == $category['category_id']) {
+        <a href='index.php?category_id=<?= $category['category_id'] ?>' class='block font-medium  <?php if ($category_id == $category['category_id']) {
               echo "text-blue-500";
             } else {
               echo "text-gray-500";
             }
 
             ?>  hover:underline'>
-            <?= $category['name'] ?>
-          </a>
-          <?php
+          <?= $category['name'] ?>
+        </a>
+        <?php
         }
         ?>
       </div>
@@ -31,38 +31,38 @@
               id="filter-select" name="filter">
               <option value="#">Newest</option>
               <option value="highToLow" <?php if ($_GET['filter'] == "highToLow")
-                echo "selected" ?>>High To Low
-                </option>
-                <option value="lowToHigh" <?php if ($_GET['filter'] == "lowToHigh")
-                echo "selected" ?>>Low To High
-                </option>
-              </select>
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
-                Filter
-              </button>
-            </form>
-          </div>
+                echo "selected" ?>>Price High To Low
+              </option>
+              <option value="lowToHigh" <?php if ($_GET['filter'] == "lowToHigh")
+                echo "selected" ?>>Price Low To High
+              </option>
+            </select>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+              Filter
+            </button>
+          </form>
+        </div>
 
-          <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <?php foreach ($products as $product) { ?>
-            <a class="flex flex-col items-center justify-center w-full max-w-lg mx-auto"
-              href="index.php?product-details&id=<?= $product['product_id'] ?>">
-              <img class="object-cover w-full rounded-md cursor-pointer hover:grow" src="/<?= $product['image'] ?>"
-                alt="T-Shirt">
-              <h4 class="mt-2 text-lg font-medium text-gray-700 ">
-                <?= $product['name'] ?>
-              </h4>
-              <p class="flex gap-1 text-[16px]">
-                <s class="pt-1 text-gray-900">
-                  <?= number_format($product['price'], 0, ',', '.') ?> <span class="text-gray-500">VND</span>
-                </s>
-                <span class="pt-1 text-blue-500">
-                  <?= number_format($product['price'] - $product['price'] * $product['discount'] / 100, 0, ',', '.') ?>
-                  VND
-                </span>
-              </p>
+          <a class="flex flex-col items-center justify-center w-full max-w-lg mx-auto"
+            href="index.php?product-details&id=<?= $product['product_id'] ?>">
+            <img class="object-cover w-full rounded-md cursor-pointer hover:grow" src="/<?= $product['image'] ?>"
+              alt="T-Shirt">
+            <h4 class="mt-2 text-lg font-medium text-gray-700 ">
+              <?= $product['name'] ?>
+            </h4>
+            <p class="flex gap-1 text-[16px]">
+              <s class="pt-1 text-gray-900">
+                <?= number_format($product['price'], 0, ',', '.') ?> <span class="text-gray-500">VND</span>
+              </s>
+              <span class="pt-1 text-blue-500">
+                <?= number_format($product['price'] - $product['price'] * $product['discount'] / 100, 0, ',', '.') ?>
+                VND
+              </span>
+            </p>
 
-            </a>
+          </a>
           <?php } ?>
         </div>
         <?php require_once "../layout/pagination.php" ?>
