@@ -38,8 +38,7 @@ if (exist_param("btn_insert")) {
 
   $VIEW_NAME = "user/new.php";
 } else if (exist_param("btn_update")) {
-
-  $defaultImage = '/content/images/user/user.png';
+  $defaultImage = $exist_image;
   $imageUrl = $defaultImage;
   $image = $_FILES['image']['name'];
   $target_dir = "../../content/images/user/";
@@ -49,7 +48,7 @@ if (exist_param("btn_insert")) {
   // check đuôi file
   $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-  if ($_FILES["image"]["size"] > 100000) {
+  if ($_FILES["image"]["size"] > 400000) {
     $MESSAGE = "Image size too large!";
     $uploadOk = 0;
   }
@@ -58,10 +57,9 @@ if (exist_param("btn_insert")) {
   // Allow certain file formats
   if (
     $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif"
+    && $imageFileType != "gif" && !empty($_FILES["image"]["name"])
   ) {
     $MESSAGE = "Only JPG, JPEG, PNG & GIF files are allowed!";
-    echo $imageFileType;
     $uploadOk = 0;
   }
 
@@ -121,7 +119,7 @@ if (exist_param("btn_insert")) {
   $end_limit = $users_per_page;
 
 
-  $items = users_pagination($_SESSION['user_id'], $start_limit, $end_limit);
+  $items = users_pagination($start_limit, $end_limit);
   $VIEW_NAME = "user/list.php";
 }
 

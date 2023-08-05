@@ -42,7 +42,9 @@
           </td>
           <td>
             <a href="index.php?btn_edit&user_id=<?= $user_id ?>" class="link link-secondary mr-1">Edit</a>
-            <a href="index.php?btn_delete&user_id=<?= $user_id ?>" class="link link-secondary remove">Remove</a>
+            <?php if ($_SESSION['user_id'] != $user_id) { ?>
+              <a href="index.php?btn_delete&user_id=<?= $user_id ?>" class="link link-secondary remove">Remove</a>
+            <?php } ?>
 
           </td>
         </tr>

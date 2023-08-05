@@ -19,8 +19,7 @@ require "search.php";
         </div>
         <div class="flex hover:underline">
           <a href="../product/index.php?category_id=<?= $category['category_id'] ?>"
-            class="py-2 px-4 text-center bg-gray-200 text-gray-700 font-semibold hover:border-1 hover:underline hover:border-gray-500 hover:border  whitespace-nowrap">View
-            more!
+            class="py-2 px-4 text-center text-gray-700 font-semibold hover:underline whitespace-nowrap">Xem thêm!
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />

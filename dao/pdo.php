@@ -27,6 +27,23 @@ function pdo_execute($sql)
   }
 }
 
+function pdo_execute_and_return($sql)
+{
+  $sql_args = array_slice(func_get_args(), 1);
+  try {
+    $conn = pdo_get_connection();
+    $stmt = $conn->prepare($sql);
+    if ($stmt->execute($sql_args)) {
+      $order_id = $conn->lastInsertId();
+      return $order_id;
+    }
+  } catch (PDOException $e) {
+    throw $e;
+  } finally {
+    unset($conn);
+  }
+}
+
 function pdo_query($sql)
 // Thực thi câu lệnh sql truy vấn một bản ghi (SELECT)
 {

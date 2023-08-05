@@ -2,10 +2,10 @@
 
 require_once "pdo.php";
 
-function product_insert($name, $price, $category_id, $image, $description, $discount)
+function product_insert($name, $price, $category_id, $image, $description, $discount, $size_S, $size_M, $size_L)
 {
-  $sql = "insert into products(name, price, category_id, image, description, discount) values(?,?,?,?,?,?)";
-  pdo_execute($sql, $name, $price, $category_id, $image, $description, $discount);
+  $sql = "insert into products(name, price, category_id, image, description, discount, size_S, size_M, size_L) values(?,?,?,?,?,?, ?, ?, ?)";
+  pdo_execute($sql, $name, $price, $category_id, $image, $description, $discount, $size_S, $size_M, $size_L);
 
 }
 
@@ -21,10 +21,10 @@ function product_delete($id)
   }
 }
 
-function product_update($name, $price, $category_id, $image, $description, $discount, $product_id)
+function product_update($name, $price, $category_id, $image, $description, $discount, $product_id, $size_S, $size_M, $size_L)
 {
-  $sql = "update products set name=?, price=?, category_id=?, image=?, description=?, discount=? where product_id=?";
-  pdo_execute($sql, $name, $price, $category_id, $image, $description, $discount, $product_id);
+  $sql = "update products set name=?, price=?, category_id=?, image=?, description=?, discount=?, size_S=?, size_M=?, size_L= ? where product_id=?";
+  pdo_execute($sql, $name, $price, $category_id, $image, $description, $discount, $size_S, $size_M, $size_L, $product_id);
 }
 
 function product_select_all()
@@ -36,6 +36,18 @@ function product_select_all()
 function product_pagination($start_limit, $end_limit)
 {
   $sql = "select * from products order by product_id desc limit $start_limit, $end_limit";
+  return pdo_query($sql);
+}
+
+function product_pagination_by_price_desc($start_limit, $end_limit)
+{
+  $sql = "select * from products order by price desc limit $start_limit, $end_limit";
+  return pdo_query($sql);
+}
+
+function product_pagination_by_price_asc($start_limit, $end_limit)
+{
+  $sql = "select * from products order by price asc limit $start_limit, $end_limit";
   return pdo_query($sql);
 }
 
@@ -136,4 +148,10 @@ function product_count_by_discount($discount)
 {
   $sql = "SELECT count(*) FROM products WHERE discount >= ?";
   return pdo_query_value($sql, $discount);
+}
+
+function product_update_size_quantity($product_id, $size, $size_quantity)
+{
+  $sql = "update products set $size = ? where product_id = ?";
+  pdo_execute($sql, $size_quantity, $product_id);
 }

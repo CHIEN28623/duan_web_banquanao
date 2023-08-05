@@ -7,7 +7,7 @@
     <li>
       <a href="index.php?filter=<?= $filter ?>&category_id=<?= $category_id ?>&page=<?= $page - 1 ?>"
         class="block py-2 px-4 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 active:bg-blue-500 active:text-white font-medium">
-        Previous
+        Trước
       </a>
     </li>
     <?php
@@ -31,7 +31,7 @@
     <li>
       <a href="index.php?filter=<?= $filter ?>&category_id=<?= $category_id ?>&page=<?= $page + 1 ?>"
         class="block py-2 px-4 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 active:bg-blue-500 active:text-white font-medium">
-        Next
+        Sau
       </a>
     </li>
     <?php

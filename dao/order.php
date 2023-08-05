@@ -8,8 +8,6 @@ function order_user($body, $user_id, $product_id)
   pdo_execute($sql, $body, $user_id, $product_id);
 }
 
-
-
 function order_insert($body, $user_id, $product_id)
 {
   $sql = "INSERT INTO order(body, user_id, product_id) VALUES(?,?,?)";
@@ -31,7 +29,7 @@ function order_select_all()
 
 function order_select_by_id($id)
 {
-  $sql = "SELECT * FROM orders WHERE user_id=?";
+  $sql = "SELECT * FROM orders o JOIN users u on o.user_id = u.user_id WHERE order_id=?";
   return pdo_query($sql, $id);
 }
 
@@ -53,15 +51,28 @@ function order_user_insert($user_id, $tutal_price, $address, $phone_number, $dat
   $sql = "INSERT INTO orders(user_id, total_price, address, phone_number, date ) VALUES(?,?,?,?,?)";
   pdo_execute($sql, $user_id, $tutal_price, $address, $phone_number, $date);
 }
-function insert_sanpham($user_id, $tutal_price, $address, $phone_number)
+function insert_order($user_id, $total_price, $address, $phone_number, $fullname, $email)
 {
-  $sql = "insert into orders(user_id, total_price, address, phone_number ) 
-        values ($user_id,'$tutal_price','$address','$phone_number')";
-  pdo_execute($sql);
+  $sql = "insert into orders(user_id, total_price, address, phone_number, fullname, email, status ) 
+        values ($user_id,'$total_price','$address','$phone_number', '$fullname', '$email', 0)";
+  $result = pdo_execute_and_return($sql);
+  return $result;
 }
 
 function order_count_all()
 {
-  $sql = "SELECT count(*) FROM order";
+  $sql = "SELECT count(*) FROM orders";
   return pdo_query_value($sql);
+}
+
+function order_pagination($start, $limit)
+{
+  $sql = "SELECT * FROM orders ORDER BY order_id DESC LIMIT $start, $limit";
+  return pdo_query($sql);
+}
+
+function order_update_status($order_id, $status)
+{
+  $sql = "UPDATE orders SET status=? WHERE order_id=?";
+  pdo_execute($sql, $status, $order_id);
 }

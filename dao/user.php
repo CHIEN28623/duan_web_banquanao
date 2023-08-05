@@ -91,8 +91,8 @@ function users_change_password($id, $password)
   pdo_execute($sql, $password, $id);
 }
 
-function users_pagination($current_user_id, $start_limit, $end_limit)
+function users_pagination($start_limit, $end_limit)
 {
-  $sql = "SELECT * FROM users where user_id != ? ORDER BY user_id DESC LIMIT $start_limit, $end_limit";
-  return pdo_query($sql, $current_user_id);
+  $sql = "SELECT * FROM users ORDER BY user_id DESC LIMIT $start_limit, $end_limit";
+  return pdo_query($sql);
 }

@@ -23,13 +23,21 @@ if (isset($_SESSION['cart'])) {
   <div class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
     <nav>
       <ul class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
-        <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="/index.php">Home</a>
+        <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="/index.php">Trang
+            chủ</a>
         </li>
         <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-            href="/site/product/index.php">Products</a></li>
+            href="/site/product/index.php">Sản phẩm</a></li>
+        <?php if ($_SESSION['is_admin'] == 1) { ?>
+          <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+              href="/admin/homepage/index.php">Admin</a>
+          </li>
+        <?php } ?>
       </ul>
     </nav>
   </div>
+
+
 
   <div class="order-1 md:order-2">
     <a class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl "
@@ -65,7 +73,7 @@ if (isset($_SESSION['cart'])) {
 
     <?php
     if (isset($_SESSION['fullname'])) {
-      echo '<a class="text-gray-600 no-underline hover:text-black hover:underline mx-3 cursor-pointer" href="/site/account/login.php?logout" > Logout </a>';
+      echo '<a class="text-gray-600 no-underline hover:text-black hover:underline mx-3 cursor-pointer" href="/site/account/login.php?logout" > Đăng xuất </a>';
 
     }
 
@@ -80,7 +88,7 @@ if (isset($_SESSION['cart'])) {
         <circle cx="10.5" cy="18.5" r="1.5" />
         <circle cx="17.5" cy="18.5" r="1.5" />
       </svg>
-      <?php if (count($_SESSION['cart']) > 0) { ?>
+      <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) { ?>
         <span
           class="cart-number absolute top-[-6px] right-[-5px] bg-red-500 text-white rounded-full text-xs w-4 h-4 flex items-center justify-center"><?= count($_SESSION['cart']) ?></span>
       <?php } ?>

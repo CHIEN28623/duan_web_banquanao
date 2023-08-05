@@ -2,6 +2,7 @@
 
 <form action="index.php" method="post" enctype="multipart/form-data" class="pl-24 mt-10 pr-10">
   <div class="grid grid-cols-2">
+    <input name="exist_image" value="<?= $image ?>" hidden>
     <div class="admin-input">
       <label>User Id</label>
       <input name="user_id" readonly value="<?= $user_id ?>">

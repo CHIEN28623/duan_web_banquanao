@@ -64,10 +64,10 @@ if (isset($_POST)) {
 
       <hr />
       <div class="md:inline-flex  space-y-4 md:space-y-0  w-full p-4 text-gray-500 items-center">
-        <h2 class="md:w-1/3 mx-auto max-w-sm">Personal info</h2>
+        <h2 class="md:w-1/3 mx-auto max-w-sm">Thông tin cá nhân</h2>
         <div class="md:w-2/3 mx-auto max-w-sm space-y-5">
           <div>
-            <label class="text-sm text-gray-400">Full name</label>
+            <label class="text-sm text-gray-400">Họ và tên</label>
             <div class="w-full inline-flex border">
               <div class="w-1/12 pt-2 bg-gray-100">
                 <svg fill="none" class="w-6 text-gray-400 mx-auto" viewBox="0 0 24 24" stroke="currentColor">
@@ -80,7 +80,7 @@ if (isset($_POST)) {
             </div>
           </div>
           <div>
-            <label class="text-sm text-gray-400">Image</label>
+            <label class="text-sm text-gray-400">Hình ảnh</label>
             <div class="w-full inline-flex border">
               <div class="pt-2 w-1/12 bg-gray-100">
                 <svg fill="none" class="w-6 text-gray-400 mx-auto" viewBox="0 0 24 24" stroke="currentColor">
@@ -97,10 +97,10 @@ if (isset($_POST)) {
       <hr />
 
       <div class="md:inline-flex  space-y-4 md:space-y-0  w-full p-4 text-gray-500 items-center">
-        <h2 class="md:w-1/3 mx-auto max-w-sm">Change password</h2>
+        <h2 class="md:w-1/3 mx-auto max-w-sm">Thay đổi mật khẩu</h2>
         <div class="md:w-2/3 mx-auto max-w-sm space-y-5">
           <div>
-            <label class="text-sm text-gray-400">Old password</label>
+            <label class="text-sm text-gray-400">Mật khẩu cũ</label>
             <div class="w-full inline-flex border">
               <div class="w-1/12 pt-2 bg-gray-100">
                 <svg fill="none" class="w-6 text-gray-400 mx-auto" viewBox="0 0 24 24" stroke="currentColor">
@@ -113,7 +113,7 @@ if (isset($_POST)) {
             </div>
           </div>
           <div>
-            <label class="text-sm text-gray-400">New Password</label>
+            <label class="text-sm text-gray-400">Mật khẩu mới</label>
             <div class="w-full inline-flex border">
               <div class="pt-2 w-1/12 bg-gray-100">
                 <svg fill="none" class="w-6 text-gray-400 mx-auto" viewBox="0 0 24 24" stroke="currentColor">
@@ -140,7 +140,7 @@ if (isset($_POST)) {
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
-          Update
+          Cập nhật
         </button>
       </div>
 
