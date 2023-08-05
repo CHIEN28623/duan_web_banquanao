@@ -1,16 +1,15 @@
-<h3 class="font-bold text-3xl text-center pt-8 text-neutral-700">Order Manager</h3>
+<h3 class="font-bold text-3xl text-center pt-8 text-neutral-700">Quản lý đơn hàng</h3>
 
-<form action="index.php" method="post" class="admin pl-24 mt-10">
+<div class="admin pl-24 mt-10">
+
   <table>
     <thead>
       <tr>
-        <th>Id Order</th>
-        <th>Username</th>
-        <th>Total Price</th>
-        <th>Address</th>
-        <th>Phone</th>
-        <th>Date</th>
-        <th>Status</th>
+        <th>Mã đơn</th>
+        <th>Tổng giá</th>
+        <th>Số điện thoại</th>
+        <th>Ngày tạo đơn</th>
+        <th>Trạng thái đơn</th>
         <th></th>
       </tr>
     </thead>
@@ -20,20 +19,19 @@
       foreach ($items as $item) {
 
         extract($item);
+
         ?>
+
+      <input type="text" name="order_id" value="<?= $order_id ?>" hidden>
       <tr>
         <td>
           <?= $order_id ?>
         </td>
+
         <td>
-          <?= $fullname ?>
+          <?= number_format($total_price, 0, ',', '.') ?> VND
         </td>
-        <td>
-          <?= $total_price ?>
-        </td>
-        <td>
-          <?= $address ?>
-        </td>
+
         <td>
           <?= $phone_number ?>
         </td>
@@ -41,25 +39,41 @@
           <?= date('d-m-Y', strtotime($created_at)) ?>
         </td>
         <td>
-          <select>
-            <option value="0">Đang chuẩn bị</option>
-            <option value="1">Đang giao hàng</option>
-            <option value="2">Giao hàng thành công</option>
-          </select>
+          <?php if ($status == 0) { 
+              echo "Đang chờ xác nhận";
+             } else if ($status == 1) {
+              echo "Đang giao hàng";
+             } else {
+              echo "Giao hàng thành công";
+             }
+             
+             
+             ?>
+
         </td>
 
         <td>
-          <a href="">Lưu</a>
-          <a href="index.php?btn_edit&order_id=<?= $order_id ?>" class="link-secondary">Details</a>
+          <a href="index.php?btn_edit&order_id=<?= $order_id ?>" class="link-secondary">Edit</a>
+          <a href="index.php?order_id=<?= $order_id ?>" class="link-secondary">Details</a>
         </td>
       </tr>
+
       <?php
       }
       ?>
     </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="7">
+          <?php
+          require_once "../components/pagination.php"
+            ?>
+        </td>
+      </tr>
+    </tfoot>
 
   </table>
-</form>
+</div>
 
 <?php
 if (strlen($MESSAGE)) {

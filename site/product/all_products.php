@@ -22,23 +22,24 @@
       <div class="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 ">
         <div class="flex items-center justify-between text-sm tracking-widest uppercase ">
           <p class="text-gray-500 ">
-            <?= count($products) ?> Items
+            <?= count($products) ?> sản phẩm
           </p>
           <form action="index.php" type="post" class="flex items-center gap-[10px]">
-            <p class="text-gray-500 ">Sort</p>
+            <input type="hidden" name="category_id" value="<?= $_GET['category_id'] ?>">
+            <p class="text-gray-500 ">Phân loại</p>
             <select
               class="font-medium text-gray-700 p-2 rounded-md bg-transparent border border-blue-500 focus:outline-none"
               id="filter-select" name="filter">
-              <option value="#">Newest</option>
+              <option value="#">Mới nhất</option>
               <option value="highToLow" <?php if ($_GET['filter'] == "highToLow")
-                echo "selected" ?>>Price High To Low
+                echo "selected" ?>>Giá từ cao đến thấp
               </option>
               <option value="lowToHigh" <?php if ($_GET['filter'] == "lowToHigh")
-                echo "selected" ?>>Price Low To High
+                echo "selected" ?>>Giá từ thấp tới cao
               </option>
             </select>
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
-              Filter
+              Lọc
             </button>
           </form>
         </div>

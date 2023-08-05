@@ -1,4 +1,4 @@
-<h3 class="font-bold text-3xl text-center pt-2 text-neutral-700">Product Manager</h3>
+<h3 class="font-bold text-3xl text-center pt-2 text-neutral-700">Quản lý sản phẩm</h3>
 
 <form action="index.php" method="post" enctype="multipart/form-data" class="pl-24 mt-10 pr-10">
   <div class="grid grid-cols-2">

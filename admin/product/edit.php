@@ -1,10 +1,8 @@
-<h3 class="font-bold text-3xl text-center pt-2 text-neutral-700">Product Manager</h3>
+<h3 class="font-bold text-3xl text-center pt-2 text-neutral-700">Quản lý sản phẩm</h3>
 <form action="index.php" method="post" enctype="multipart/form-data" class="pl-24 mt-10 pr-10">
   <div class="grid grid-cols-2">
-    <div class="admin-input">
-      <label>Product Id</label>
-      <input name="product_id" readonly value="<?= $product_id ?>">
-    </div>
+    <input name="product_id" value="<?= $product_id ?>" hidden>
+    <input name="exist_image" value="<?= $image ?>" hidden>
     <div class="admin-input">
       <label>Product Name</label>
       <input name="name" value="<?= $name ?>">
@@ -16,6 +14,18 @@
     <div class="admin-input">
       <label>Discount (%)</label>
       <input name="discount" type="number" value="<?= $discount ?>">
+    </div>
+    <div class="admin-input">
+      <label>Size S </label>
+      <input name="size_S" type="number" value="<?= $size_S ?>">
+    </div>
+    <div class="admin-input">
+      <label>Size M </label>
+      <input name="size_M" type="number" value="<?= $size_M ?>">
+    </div>
+    <div class="admin-input">
+      <label>Size L </label>
+      <input name="size_L" type="number" value="<?= $size_L ?>">
     </div>
     <div class="admin-input">
       <label>Image</label>
@@ -31,7 +41,7 @@
         <?php foreach ($category_select_list as $category) { ?>
           <option <?php if ($category['category_id'] == $category_id)
             echo "selected" ?>
-            value="<?= $category['category_id'] ?>"> <?= $category['name'] ?> </option>;
+              value="<?= $category['category_id'] ?>"> <?= $category['name'] ?> </option>;
         <?php } ?>
       </select>
     </div>

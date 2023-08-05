@@ -3,6 +3,8 @@ require "../../global.php";
 require "../../dao/product.php";
 require "../../dao/category.php";
 
+$category_select_list = category_select_all();
+
 extract($_REQUEST);
 
 if (exist_param('btn_insert')) {
@@ -56,8 +58,8 @@ if (exist_param('btn_insert')) {
   } else if ($uploadOk == 1) {
     try {
       // Thực hiện insert và giải phóng biến
-      product_insert($name, $price, $category_id, $imageUrl, $description, $discount);
-      unset($name, $price, $category_id, $image, $description, $discount);
+      product_insert($name, $price, $category_id, $imageUrl, $description, $discount, intval($size_S), intval($size_M), intval($size_L));
+      unset($name, $price, $category_id, $image, $description, $discount, $discount, $size_S, $size_M, $size_L);
       $MESSAGE = "New product added successfully!";
     } catch (\Exception $e) {
       echo $e->getMessage();
@@ -66,12 +68,12 @@ if (exist_param('btn_insert')) {
 
   }
 
-  $VIEW_NAME = "product/new.php";
+  header("location: index.php");
 
 } else if (exist_param('btn_update')) {
   // Khi có tham số truyền vào là btn_update thì sẽ lấy dữ liệu và update
   //validate image file
-  $defaultImage = 'content/images/product/default-image.jpeg';
+  $defaultImage = $exist_image;
   $imageUrl = $defaultImage;
   $image = $_FILES['image']['name'];
   $target_dir = "../../content/images/product/";
@@ -117,8 +119,8 @@ if (exist_param('btn_insert')) {
     $MESSAGE = "Please enter full information!";
   } else if ($uploadOk == 1) {
     try {
-      product_update($name, $price, $category_id, $imageUrl, $description, $discount, $product_id);
-      unset($name, $price, $category_id, $image, $description, $discount);
+      product_update($name, $price, $category_id, $imageUrl, $description, $discount, $product_id, intval($size_S), intval($size_M), intval($size_L));
+      unset($name, $price, $category_id, $image, $description, $product_id, $discount);
       $MESSAGE = "Product updated successfully!";
     } catch (\Exception $e) {
       echo $e->getMessage();
@@ -127,8 +129,7 @@ if (exist_param('btn_insert')) {
 
   }
   // Hiển thị lại trang list.php
-  $items = product_select_all();
-  $VIEW_NAME = "product/list.php";
+  header("location: index.php");
 
 } else if (exist_param('btn_delete')) {
   // Khi có tham số truyền vào là btn_delete thì sẽ lấy dữ liệu và delete
@@ -142,8 +143,7 @@ if (exist_param('btn_insert')) {
   }
 
   // Quay về trang danh sách
-  $items = product_select_all();
-  $VIEW_NAME = "product/list.php";
+  header("location: index.php");
 
 } else if (exist_param('btn_edit')) {
   // Khi có tham số truyền vào là btn_edit thì hiển thị trang product edit.php
@@ -168,20 +168,46 @@ if (exist_param('btn_insert')) {
   } else {
     $page = 1;
   }
+  // Khởi tạo tham số cho filter
+  if (isset($_GET['filter'])) {
+    $filter = $_GET['filter'];
+  }
+
   $products_per_page = 4;
   $totalPage = ceil((product_count()) / $products_per_page);
+  ;
   $start_limit = ($page - 1) * $products_per_page;
   $end_limit = $products_per_page;
 
 
-  $items = product_pagination($start_limit, $end_limit);
+  if ($filter) {
+    if ($filter == 'highToLow') {
+      $items = product_pagination_by_price_desc($start_limit, $end_limit);
+      if ($category_id) {
+        $items = product_pagination_by_category_price_desc($category_id, $start_limit, $end_limit);
+        $totalPage = ceil((product_count_by_category($category_id)) / $products_per_page);
+      }
+    } else if ($filter == 'lowToHigh') {
+      $items = product_pagination_by_price_asc($start_limit, $end_limit);
+      if ($category_id) {
+        $items = product_pagination_by_category_price_asc($category_id, $start_limit, $end_limit);
+        $totalPage = ceil((product_count_by_category($category_id)) / $products_per_page);
+      }
+    }
+  } else if ($category_id) {
+    $items = product_pagination_by_category_id($category_id, $start_limit, $end_limit);
+    $totalPage = ceil((product_count_by_category($category_id)) / $products_per_page);
+  } else {
+    $items = product_pagination($start_limit, $end_limit);
+
+  }
+
+
+
   $VIEW_NAME = "product/list.php";
 }
 
 // Lấy danh sách category
-if ($VIEW_NAME == "product/new.php" || $VIEW_NAME == "product/edit.php") {
-  $category_select_list = category_select_all();
-}
 
 
 require "../layout.php";

@@ -13,6 +13,7 @@ if (exist_param("account")) {
   $categories = category_select_all();
   $filter = null;
 
+
   if (!isset($category_id)) {
     $category_id = $categories[0]['category_id'];
   }

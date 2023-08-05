@@ -126,19 +126,19 @@ if (isset($_POST['add'])) {
           <?= $description ?>
         </p>
         <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
-          <label for="size" class="block font-medium text-gray-700 w-[120px]">Select size:</label>
+          <label for="size" class="block font-medium text-gray-700 w-[120px]">Kích cỡ:</label>
           <select id="size" name="size"
             class="block w-[200px] py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            <option value="S" class="text-gray-700">S</option>
-            <option value="M" class="text-gray-700">M</option>
-            <option value="L" class="text-gray-700">L</option>
+            <option value="size_S" class="text-gray-700">S</option>
+            <option value="size_M" class="text-gray-700">M</option>
+            <option value="size_L" class="text-gray-700">L</option>
           </select>
 
         </div>
 
         <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
           <div class="flex">
-            <span class="mr-3">Quantity</span>
+            <span class="mr-3">Số lượng</span>
             <input type="number" name="quantity" class="border-2 rounded-[5px] text-center w-[100px] border-slate-400"
               value="1" />
           </div>
@@ -156,8 +156,8 @@ if (isset($_POST['add'])) {
           </div>
           <div>
             <button type="submit" name="add"
-              class="flex mr-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Add
-              to cart</button>
+              class="flex mr-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Thêm
+              giỏ hàng</button>
           </div>
         </div>
     </div>
