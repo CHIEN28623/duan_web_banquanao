@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 if (is_logged_in() && is_admin()) {
 } else {
@@ -25,13 +24,10 @@ if (is_logged_in() && is_admin()) {
 <body class="bg-[#F3F1EF]">
 
   <div class="flex ">
-    <nav class="flex flex-col gap-4 pt-10 pl-12 ">
-      <h1 class="font-bold  text-left pl-0 text-xl">Admin Panel</h1>
-      <div class="flex flex-col items-start ml-5  gap-3 mb-10">
+    <nav class="flex flex-col gap-4 pt-10 pl-4">
+      <h1 class="font-bold text-left pl-2 text-xl">Quản lý website</h1>
+      <div class="flex flex-col items-start ml-8 pl-2 gap-3 mb-10">
         <img src="<?= $_SESSION['image'] ?>" alt="" class="w-[100px] h-[100px] rounded-full">
-        <p class="pl-1 text-neutral-600 font-bold text-[18px]">
-          <?= $_SESSION['fullname'] ?>
-        </p>
 
         <a class="flex cursor-pointer hover:underline" href="/site/homepage/">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -39,15 +35,11 @@ if (is_logged_in() && is_admin()) {
             <path stroke-linecap="round" stroke-linejoin="round"
               d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
           </svg>
-          Back to website
+          website
         </a>
       </div>
 
-
-
-
       <?php require 'menu.php'; ?>
-
     </nav>
     <div class="bg-white w-full h-full min-h-[100vh]   mt-4 mr-7">
       <?php require $VIEW_NAME; ?>
