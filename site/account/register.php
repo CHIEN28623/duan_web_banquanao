@@ -14,10 +14,11 @@ if ($_POST) {
       $error['exist'] = "Email is exist";
     } else {
       users_insert($fullname, $email, $password);
-      echo '<script>alert("Đăng ký thành công")
-      
-      window.location.href = "/site/account/login.php";
-      </script>';
+      include './popup.php';
+      // echo '<script>alert("Đăng ký thành công")
+
+      // window.location.href = "/site/account/login.php";
+      // </script>';
     }
   }
 }
@@ -34,6 +35,7 @@ if ($_POST) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../../output.css" />
+  <script src="./script.js" defer></script>
   <title>Document</title>
 </head>
 

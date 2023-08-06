@@ -32,6 +32,12 @@ function customers_update($fullname, $password, $image, $id)
   pdo_execute($sql, $fullname, $password, $image, $id);
 }
 
+function customers_update_without_image($fullname, $password, $id)
+{
+  $sql = "UPDATE users SET fullname=?, password=? WHERE user_id=?";
+  pdo_execute($sql, $fullname, $password, $id);
+}
+
 function users_delete($id)
 {
   $sql = "DELETE FROM users WHERE user_id=?";

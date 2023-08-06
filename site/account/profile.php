@@ -3,27 +3,53 @@
 require_once '../../global.php';
 require_once '../../dao/user.php';
 
-if (isset($_POST)) {
+$err = [];
+
+if (isset($_POST['submit'])) {
   extract($_POST);
 
-  if (isset($fullname)) {
+
+
+  // check fullname is empty
+  if (empty($fullname)) {
+    $err['fullname'] = "Tên không được để trống";
+  } else {
+    unset($err['fullname']);
+  }
+
+  // kiểm tra mật khẩu cũ trống
+  if (empty($oldPassword)) {
+    $err['oldPassword'] = "Mật khẩu cũ không được để trống";
+  } else if ($oldPassword !== $_SESSION['password']) {
+    $err['oldPassword'] = "Mật khẩu cũ không đúng";
+  } else {
+    unset($err['oldPassword']);
+  }
+
+  // kiểm tra mật khẩu mới trống
+  if (empty($newPassword)) {
+    $err['password'] = "Mật khẩu mới không được để trống";
+  } else {
+    unset($err['password']);
+  }
+
+
+  if (empty($_FILES['image']['name'])) {
     $image = $_SESSION['image'];
-    $updatedPassword = $_SESSION['password'];
+  } else {
+    $image = save_file('image', '/content/images/user/');
+    $image = '/content/images/user/' . $image;
+  }
 
-    if (!empty($_FILES['image'])) {
-      $image = save_file('image', '/content/images/user/');
-      $image = '/content/images/user/' . $image;
-    }
-
-    if (isset($oldPassword) && isset($newPassword)) {
-      $updatedPassword = $newPassword;
-    }
-
-
-    customers_update($fullname, $updatedPassword, $image, $_SESSION['user_id']);
+  if (empty($err)) {
+    customers_update($fullname, $newPassword, $image, $_SESSION['user_id']);
     $_SESSION['fullname'] = $fullname;
     $_SESSION['image'] = $image;
+    $_SESSION['password'] = $newPassword;
+
+    include './update-popup.php';
   }
+
 }
 
 
@@ -101,7 +127,7 @@ if (isset($_POST)) {
         <div class="md:w-2/3 mx-auto max-w-sm space-y-5">
           <div>
             <label class="text-sm text-gray-400">Mật khẩu cũ</label>
-            <div class="w-full inline-flex border">
+            <div class="w-full inline-flex border relative">
               <div class="w-1/12 pt-2 bg-gray-100">
                 <svg fill="none" class="w-6 text-gray-400 mx-auto" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -110,11 +136,17 @@ if (isset($_POST)) {
               </div>
               <input type="password" name="oldPassword" class="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                 placeholder="*******" />
+              <div class="text-red-500 absolute left-0 top-[44px]">
+                <?php if (!empty($err['oldPassword'])) {
+                  echo $err['oldPassword'];
+                } ?>
+              </div>
             </div>
+
           </div>
           <div>
             <label class="text-sm text-gray-400">Mật khẩu mới</label>
-            <div class="w-full inline-flex border">
+            <div class="w-full inline-flex border relative">
               <div class="pt-2 w-1/12 bg-gray-100">
                 <svg fill="none" class="w-6 text-gray-400 mx-auto" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -124,6 +156,11 @@ if (isset($_POST)) {
               </div>
               <input type="password" name="newPassword" class="w-11/12 focus:outline-none focus:text-gray-600 p-2"
                 placeholder="*******" />
+              <div class="text-red-500 absolute left-0 top-[44px]">
+                <?php if (isset($err['newPassword'])) {
+                  echo $err['newPassword'];
+                } ?>
+              </div>
             </div>
           </div>
         </div>
@@ -135,7 +172,7 @@ if (isset($_POST)) {
       <div class="md:inline-flex w-full space-y-4 md:space-y-0 p-8 text-gray-500 text-center">
         <button
           class="text-white mx-auto max-w-sm rounded-md text-center bg-red-400 py-2 px-4 inline-flex items-center focus:outline-none md:float-right hover:bg-red-600"
-          type="submit">
+          type="submit" name="submit">
           <svg fill="none" class="w-4 text-white mr-2" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />

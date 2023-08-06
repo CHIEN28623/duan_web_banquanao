@@ -6,6 +6,7 @@ require_once '../../dao/product.php';
 require_once '../../dao/comment.php';
 
 
+
 extract(product_select_by_id($_GET['id']));
 product_increase_view($product_id);
 $category = category_select_by_id($category_id)['name'];
@@ -33,8 +34,8 @@ if (isset($_POST['add'])) {
     if ($item['id'] == $product_id && $item['size'] == $size) {
       $isNotExist = false;
       $_SESSION['cart'][$key]['quantity'] += $quantity;
-      echo "<script>window.location.href='product';</script>";
-      exit;
+      // echo "<script>window.location.href='product';</script>";
+      // exit;
     }
   }
 
@@ -43,7 +44,8 @@ if (isset($_POST['add'])) {
   }
 
 
-  echo "<script>window.location.href='product';</script>";
+  // echo "<script>window.location.href='product';</script>";
+  include './popup.php';
 }
 ?>
 

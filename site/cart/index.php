@@ -81,7 +81,7 @@ foreach ($cart as $item) {
         </span>
         <span class="text-center w-1/5 font-semibold text-sm ">
           Size
-          <?= $item['size'] ?>
+          <?= substr($item['size'], 5) ?>
         </span>
       </div>
       <?php } ?>
