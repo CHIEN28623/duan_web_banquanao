@@ -33,7 +33,7 @@ if (exist_param('btn_insert')) {
     $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif" && isset($_FILES["image"]["name"])
   ) {
-    $MESSAGE = "Only JPG, JPEG, PNG & GIF files are allowed!";
+    $MESSAGE = "Chỉ cho phép file JPG, JPEG, PNG và GIF!";
     $uploadOk = 0;
   }
   // UPload file 
@@ -95,7 +95,7 @@ if (exist_param('btn_insert')) {
     $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
     && $imageFileType != "gif" && isset($_FILES["image"]["name"])
   ) {
-    $MESSAGE = "Only JPG, JPEG, PNG & GIF files are allowed!";
+    $MESSAGE = "Chỉ cho phép file JPG, JPEG, PNG và GIF!";
     $uploadOk = 0;
   }
   // UPload file 

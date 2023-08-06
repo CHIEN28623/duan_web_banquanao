@@ -29,9 +29,9 @@ if (isset($_SESSION['cart'])) {
         <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
             href="/site/product/index.php">Sản phẩm</a></li>
         <?php if ($_SESSION['is_admin'] == 1) { ?>
-          <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-              href="/admin/homepage/index.php">Admin</a>
-          </li>
+        <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+            href="/admin/homepage/index.php">Admin</a>
+        </li>
         <?php } ?>
       </ul>
     </nav>
@@ -89,12 +89,12 @@ if (isset($_SESSION['cart'])) {
         <circle cx="17.5" cy="18.5" r="1.5" />
       </svg>
       <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) { ?>
-        <span
-          class="cart-number absolute top-[-6px] right-[-5px] bg-red-500 text-white rounded-full text-xs w-4 h-4 flex items-center justify-center"><?= count($_SESSION['cart']) ?></span>
+      <span
+        class="cart-number absolute top-[-6px] right-[-5px] bg-red-500 text-white rounded-full text-xs w-4 h-4 flex items-center justify-center"><?= count($_SESSION['cart']) ?></span>
       <?php } ?>
     </a>
 
-    <a href="/site/order/index.php">
+    <a href="/site/order/index.php?list">
       <svg xmlns=" http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         class="w-6 h-6 ml-4 cursor-pointer">
         <path stroke-linecap="round" stroke-linejoin="round"

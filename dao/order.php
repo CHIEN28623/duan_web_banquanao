@@ -33,6 +33,12 @@ function order_select_by_id($id)
   return pdo_query($sql, $id);
 }
 
+function order_select_by_user($user_id)
+{
+  $sql = "SELECT * FROM orders WHERE user_id=?";
+  return pdo_query($sql, $user_id);
+}
+
 function order_exist($id)
 {
   $sql = "SELECT count(*) FROM order WHERE order_item_id=?";
@@ -41,7 +47,7 @@ function order_exist($id)
 
 function order_item_select_by_order($order_id)
 {
-  $sql = "SELECT * from order_items oi inner join products p on oi.product_id=p.product_id  WHERE order_id=?";
+  $sql = "SELECT *, c.name as 'category_name', p.name as 'name' from order_items oi inner join products p on oi.product_id=p.product_id join categories c on c.category_id=p.category_id WHERE order_id=?";
   return pdo_query($sql, $order_id);
 }
 

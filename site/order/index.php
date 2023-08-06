@@ -36,11 +36,18 @@ if (exist_param('delete')) {
 
 } else if (exist_param("information")) {
   $VIEW_NAME = "order/information.php";
-} else {
+} else if (exist_param("list")) {
 
   require_once '../../dao/order.php';
-  $orders = order_select_by_id($_SESSION['user_id']);
+  $orders = order_select_by_user($_SESSION['user_id']);
   $VIEW_NAME = "order/list.php";
+} else if (exist_param("order_detail")) {
+  require_once '../../dao/order.php';
+  $order_id = $_GET['id'];
+  $order_items = order_item_select_by_order($order_id);
+  $VIEW_NAME = "order/order-detail.php";
+} else {
+  $VIEW_NAME = "order/index.php";
 }
 
 require '../layout.php';
