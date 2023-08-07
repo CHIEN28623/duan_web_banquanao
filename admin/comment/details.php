@@ -7,9 +7,9 @@
     <thead>
       <tr>
         <th></th>
-        <th>Content</th>
-        <th>Date</th>
-        <th>User Email</th>
+        <th>Nội dung</th>
+        <th>Ngày bình luận</th>
+        <th>Email của người dùng</th>
         <th></th>
       </tr>
     </thead>

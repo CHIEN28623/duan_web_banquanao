@@ -35,7 +35,7 @@ function product_select_all()
 
 function product_pagination($start_limit, $end_limit)
 {
-  $sql = "select * from products order by product_id desc limit $start_limit, $end_limit";
+  $sql = "select * from products where category_id != 1 order by product_id desc limit $start_limit, $end_limit";
   return pdo_query($sql);
 }
 
@@ -116,7 +116,7 @@ function product_count_views_each_month()
 
 function product_count()
 {
-  $sql = "SELECT count(*) FROM products";
+  $sql = "SELECT count(*) FROM products where category_id != 1";
   return pdo_query_value($sql);
 }
 

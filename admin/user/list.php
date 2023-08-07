@@ -1,4 +1,4 @@
-<h3 class="font-bold text-3xl text-center pt-8 text-neutral-700">User Manager</h3>
+<h3 class="font-bold text-3xl text-center pt-8 text-neutral-700">Quản lý tài khoản</h3>
 
 
 <form action="index.php" method="post" class="admin pl-24 mt-10">
@@ -6,11 +6,10 @@
     <thead>
       <tr>
         <th></th>
-        <th>User Id</th>
-        <th>Fullname</th>
+        <th>Họ và tên</th>
         <th>Email</th>
-        <th>Image</th>
-        <th>Role</th>
+        <th>Ảnh</th>
+        <th>Vai trò</th>
         <th></th>
       </tr>
     </thead>
@@ -22,9 +21,6 @@
         ?>
         <tr>
           <th><input type="checkbox" name="user_id" value="<?= $user_id ?>"></th>
-          <td>
-            <?= $user_id ?>
-          </td>
           <td>
             <?= $fullname ?>
           </td>
@@ -38,12 +34,12 @@
           </td>
 
           <td>
-            <?= $is_admin == 1 ? 'Admin' : 'Customer' ?>
+            <?= $is_admin == 1 ? 'Admin' : 'Khách hàng' ?>
           </td>
           <td>
-            <a href="index.php?btn_edit&user_id=<?= $user_id ?>" class="link link-secondary mr-1">Edit</a>
+            <a href="index.php?btn_edit&user_id=<?= $user_id ?>" class="link link-secondary mr-1">Sửa</a>
             <?php if ($_SESSION['user_id'] != $user_id) { ?>
-              <a href="index.php?btn_delete&user_id=<?= $user_id ?>" class="link link-secondary remove">Remove</a>
+              <a href="index.php?btn_delete&user_id=<?= $user_id ?>" class="link link-secondary remove">Xoá</a>
             <?php } ?>
 
           </td>
@@ -62,9 +58,9 @@
       </tr>
       <tr>
         <td colspan="7">
-          <button id="check-all" type="button" class="button-red">Select all</button>
-          <button id="clear-all" type="button" class="button-white mx-5">Unselect all</button>
-          <button id="btn-delete" name="btn_delete" class="button-red">Delete all selection </button>
+          <button id="check-all" type="button" class="button-red">Chọn tất cả</button>
+          <button id="clear-all" type="button" class="button-white mx-5">Bỏ chọn tất cả</button>
+          <button id="btn-delete" name="btn_delete" class="button-red">Xoá tất cả các mục đã chọn </button>
           <a href="index.php?btn_new" class="ml-4 link-primary">Add new user</a>
         </td>
       </tr>

@@ -21,7 +21,7 @@ if (exist_param("profile")) {
   try {
     category_delete($category_id);
     $items = category_select_all();
-    $MESSAGE = "Remove successful!";
+    $MESSAGE = "Xoá thành công!";
   } catch (Exception $exc) {
     $MESSAGE = "Remove failed!";
   }

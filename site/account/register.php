@@ -15,10 +15,7 @@ if ($_POST) {
     } else {
       users_insert($fullname, $email, $password);
       include './popup.php';
-      // echo '<script>alert("Đăng ký thành công")
 
-      // window.location.href = "/site/account/login.php";
-      // </script>';
     }
   }
 }
@@ -36,7 +33,7 @@ if ($_POST) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../../output.css" />
   <script src="./script.js" defer></script>
-  <title>Document</title>
+  <title>Đăng kí</title>
 </head>
 
 <style></style>
@@ -55,11 +52,11 @@ if ($_POST) {
       <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-            Sign up new account
+            Đăng kí tài khoản mới
           </h1>
           <form class="space-y-4 md:space-y-6" action="" method="post">
             <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Email</label>
               <input type="email" name="email" id="email" value="<?= $email ?>"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 placeholder="name@company.com" required="" />
@@ -68,21 +65,20 @@ if ($_POST) {
               } ?>
             </div>
             <div>
-              <label for="fullname" class="block mb-2 text-sm font-medium text-gray-900 ">Full
-                name</label>
+              <label for="fullname" class="block mb-2 text-sm font-medium text-gray-900 ">Họ và tên</label>
               <input type="fullname" name="fullname" id="fullname" value="<?= $fullname ?>"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                placeholder="Your fullname" required="" />
+                placeholder="Họ tên của bạn" required="" />
             </div>
             <div>
-              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Mật khẩu</label>
               <input type="password" name="password" id="password" placeholder="••••••••"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-[#2563eb] block w-full p-2.5"
                 required="" />
             </div>
             <div>
-              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Confirm
-                Password</label>
+              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Xác nhận mật
+                khẩu</label></label>
               <input type="password" name="passwordConfirm" id="password" placeholder="••••••••"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-[#2563eb] block w-full p-2.5"
                 required="" />
@@ -90,18 +86,13 @@ if ($_POST) {
                 echo '<p class="alert">Passwords must be the same</p>';
               } ?>
             </div>
-            <div class="flex items-center justify-between">
-              <div class="flex items-start">
-              </div>
-              <a href="#" class="text-sm font-medium text-primary-600 hover:underline">Forgot password?</a>
-            </div>
             <button type="submit"
               class="w-full text-white bg-[#2563eb] hover:bg-[#1d4ed8] rounded-lg text-sm px-5 py-4 text-center">
-              Sign Up
+              Đăng nhập
             </button>
             <p class="text-sm font-light text-gray-500 dark:text-gray-400 text-center">
-              Already have an account?
-              <a href="./login.php" class="font-medium text-[#2563eb] hover:underline">Login</a>
+              Đã có tài khoản?
+              <a href="./login.php" class="font-medium text-[#2563eb] hover:underline">Đăng nhập</a>
             </p>
           </form>
         </div>

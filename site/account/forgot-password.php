@@ -14,7 +14,7 @@ if ($_POST) {
     extract($user);
     $newPassword = $password;
     require "../recovery-password.php";
-    $error['email'] = "Vui lòng kiểm tra email của bạn!";
+    $error['email'] = "Vui lòng kiểm tra email của bạn để lấy mật khẩu!";
   } else {
     $error['email'] = "Email không tồn tại trong hệ thống!";
   }
@@ -71,8 +71,8 @@ if ($_POST) {
               Lấy mật khẩu
             </button>
             <p class="text-sm font-light text-gray-500 400 text-center">
-              Don’t have an account yet?
-              <a href="./register.php" class="font-medium text-[#2563eb] hover:underline">Sign up</a>
+              Bạn chưa có tài khoản?
+              <a href="./register.php" class="font-medium text-[#2563eb] hover:underline">Đăng kí</a>
             </p>
           </form>
         </div>

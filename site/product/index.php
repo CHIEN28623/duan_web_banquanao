@@ -18,7 +18,7 @@ if (exist_param("account")) {
     $category_id = $categories[0]['category_id'];
   }
 
-  $products_per_page = 2;
+  $products_per_page = 4;
 
   $totalPage = ceil(product_count_by_category($category_id) / $products_per_page);
 

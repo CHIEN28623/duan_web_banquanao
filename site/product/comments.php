@@ -28,7 +28,7 @@ if (isset($_POST['newComment'])) {
           Đăng bình luận
         </button>
       <?php if (!is_logged_in())
-        echo "<span class='text-red-400'>You need log in to comment!</span>" ?>
+        echo "<span class='text-red-400'>Bạn cần có tài khoản để đăng nhập!</span>" ?>
       </form>
 
 

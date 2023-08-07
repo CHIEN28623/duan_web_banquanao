@@ -24,7 +24,7 @@ if (is_logged_in() && is_admin()) {
 <body class="bg-[#F3F1EF]">
 
   <div class="flex ">
-    <nav class="flex flex-col gap-4 pt-10 pl-4">
+    <nav class="flex flex-col gap-4 pt-10 pl-4 w-[300px]">
       <h1 class="font-bold text-left pl-2 text-xl">Quản lý website</h1>
       <div class="flex flex-col items-start ml-8 pl-2 gap-3 mb-10">
         <img src="<?= $_SESSION['image'] ?>" alt="" class="w-[100px] h-[100px] rounded-full">

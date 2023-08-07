@@ -62,4 +62,16 @@ function statistic_order_items()
   return pdo_query($sql);
 }
 
-// inner join products p on p.product_id = oi.product_id inner join users u on o.user_id = u.user_id 
+// tính doanh thu tổng các đơn hàng có trạng thái đã giao
+function total_revenue()
+{
+  $sql = "SELECT SUM(total_price) FROM orders WHERE status = 2";
+  return pdo_query_value($sql);
+}
+
+// tính tổng số sản phẩm trong đơn hàng có trạng thái đã giao theo tháng
+function total_product_by_month($month)
+{
+  $sql = "SELECT SUM(quantity) FROM order_items oi INNER JOIN orders o ON oi.order_id = o.order_id WHERE MONTH(o.created_at) = $month AND o.status = 2";
+  return pdo_query_value($sql);
+}

@@ -4,6 +4,8 @@ require "../../dao/product.php";
 require "../../dao/category.php";
 
 $category_select_list = category_select_all();
+$filter;
+$category_id;
 
 extract($_REQUEST);
 
@@ -68,7 +70,7 @@ if (exist_param('btn_insert')) {
 
   }
 
-  header("location: index.php");
+  $VIEW_NAME = "product/new.php";
 
 } else if (exist_param('btn_update')) {
   // Khi có tham số truyền vào là btn_update thì sẽ lấy dữ liệu và update

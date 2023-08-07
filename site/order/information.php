@@ -16,7 +16,7 @@ foreach ($cart as $item) {
             class="mt-2 block h-1 w-10 bg-blue-600 sm:w-20"></span></h1>
         <form action="index.php?total=<?= $total + 50000 ?>" method="post" class="mt-10 flex flex-col space-y-4">
           <div><label for="fullname" class="text-xs font-semibold text-gray-500">Họ và tên</label><input id="fullname"
-              name="fullname" placeholder="Nguyễn Văn A"
+              name="fullname" placeholder="Nguyễn Văn A" value="<?= $_SESSION['fullname'] ?>"
               class="mt-1 block w-full border rounded border-gray-300 bg-gray-50 py-3 px-4 text-sm placeholder-gray-300 shadow-sm outline-none transition focus:ring-2 focus:ring-blue-500"
               required />
           </div>
@@ -30,11 +30,19 @@ foreach ($cart as $item) {
               src="/images/uQUFIfCYVYcLK0qVJF5Yw.png" alt="" class="absolute bottom-3 right-3 max-h-4" /></div>
           <div class="relative"><label for="email" class="text-xs font-semibold text-gray-500">Email</label><input
               type="email" id="email" name="email" placeholder="xxxxxxxxx@example.com" required
+              value="<?= $_SESSION['email'] ?>"
               class="border block w-full rounded border-gray-300 bg-gray-50 py-3 px-4 pr-10 text-sm placeholder-gray-300 shadow-sm outline-none transition focus:ring-2 focus:ring-blue-500" /><img
               src="/images/uQUFIfCYVYcLK0qVJF5Yw.png" alt="" class="absolute bottom-3 right-3 max-h-4" /></div>
-          <button type="submit" name="success"
-            class="mt-4 inline-flex w-full items-center justify-center rounded bg-indigo-600 py-2.5 px-4 text-base font-semibold tracking-wide text-white text-opacity-80 outline-none ring-offset-2 transition hover:text-opacity-100 focus:ring-2 focus:ring-indigo-500 sm:text-lg">Xác
-            nhận đơn hàng</button>
+          <?php
+          if (!empty($_SESSION['user_id'])) { ?>
+            <button type="submit" name="success"
+              class="mt-4 inline-flex w-full items-center justify-center rounded bg-indigo-600 py-2.5 px-4 text-base font-semibold tracking-wide text-white text-opacity-80 outline-none ring-offset-2 transition hover:text-opacity-100 focus:ring-2 focus:ring-indigo-500 sm:text-lg">Xác
+              nhận đơn hàng</button>
+          <?php } else { ?>
+            <a href="/site/account/login.php"
+              class="cursor-pointer mt-4 inline-flex w-full items-center justify-center rounded bg-indigo-600 py-2.5 px-4 text-base font-semibold tracking-wide text-white text-opacity-80 outline-none ring-offset-2 transition hover:text-opacity-100 focus:ring-2 focus:ring-indigo-500 sm:text-lg">Vùi
+              lòng đăng nhập để đặt hàng!</a>
+          <?php } ?>
         </form>
 
       </div>
@@ -117,6 +125,10 @@ foreach ($cart as $item) {
           </p>
           <p class="flex justify-between text-sm font-medium text-white"><span>Phí vận chuyển</span><span>50.000
               VND</span></p>
+          <p class="flex justify-between text-lg font-bold text-white"><span>Tổng hoá đơn</span><span>
+              <?= number_format($total + 50000, 0, ',', '.') ?> VND
+            </span>
+          </p>
         </div>
       </div>
       <div class="relative mt-10 text-white">

@@ -20,7 +20,7 @@ removeLinks.forEach(function (link) {
     event.preventDefault();
 
     // Show a confirmation dialog box
-    var confirmed = confirm("Are you sure you want to delete this part?");
+    var confirmed = confirm("Bạn có chắc muốn xoá?");
 
     // If the user confirmed, follow the link
     if (confirmed) {
@@ -29,7 +29,7 @@ removeLinks.forEach(function (link) {
   });
 });
 
-// Get the "Select all" button
+// Get the "Chọn tất cả" button
 var selectAllButton = document.getElementById("check-all");
 
 // Add a click event listener to the button
@@ -43,7 +43,7 @@ selectAllButton.addEventListener("click", function (event) {
   });
 });
 
-// Get the "Unselect all" button
+// Get the "Bỏ chọn tất cả" button
 var unselectAllButton = document.getElementById("clear-all");
 
 // Add a click event listener to the button

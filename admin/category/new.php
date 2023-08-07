@@ -1,13 +1,10 @@
-<h3 class="font-bold text-3xl text-center pt-8 text-neutral-700">Category Manager</h3>
+<h3 class="font-bold text-3xl text-center pt-8 text-neutral-700">Quản lý danh mục</h3>
 
 <form action="index.php" method="post" class="pl-24 mt-10">
-  <div class="admin-input">
-    <label>Category ID</label>
-    <input name="category_id" value="Auto Number" readonly>
-  </div>
+  <input hidden name="category_id" value="Auto Number" readonly>
 
   <div class="admin-input">
-    <label>Category Name</label>
+    <label>Tên danh mục</label>
     <input name="name" placeholder="Name">
   </div>
   <div>

@@ -3,7 +3,8 @@ require "../../global.php";
 require "../../dao/user.php";
 //--------------------------------//
 
-
+$category_id = null;
+$filter = null;
 extract($_REQUEST);
 
 if (exist_param("btn_insert")) {
@@ -87,18 +88,26 @@ if (exist_param("btn_insert")) {
   }
 
 
+
   $VIEW_NAME = "user/edit.php";
 
 } else if (exist_param("btn_delete")) {
 
   try {
     users_delete($user_id);
-    $items = users_select_all();
-    $MESSAGE = "Removed successfully!";
+    // $items = users_select_all();
+    $MESSAGE = "Xoá thành công";
+
+    header("location: index.php");
   } catch (Exception $exc) {
-    $MESSAGE = "Removed failed!";
+    $MESSAGE = "Không thể xoá tài khoản này! Có bình luận hoặc đơn hàng thuộc tài khoản này!";
+    echo $MESSAGE;
   }
-  $VIEW_NAME = "user/index.php";
+
+
+
+
+  // $VIEW_NAME = "user/list.php";
 } else if (exist_param("btn_edit")) {
   $item = users_select_by_id($user_id);
   extract($item);

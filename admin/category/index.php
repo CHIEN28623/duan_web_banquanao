@@ -25,9 +25,9 @@ if (exist_param("btn_insert")) {
 } else if (exist_param("btn_update")) {
   try {
     category_update($category_id, $name);
-    $MESSAGE = "Update successful!";
+    $MESSAGE = "Cập nhật thành công!";
   } catch (Exception $exc) {
-    $MESSAGE = "Update failed!";
+    $MESSAGE = "Cập nhật thất bại";
   }
 
   $VIEW_NAME = "category/edit.php";
@@ -35,9 +35,9 @@ if (exist_param("btn_insert")) {
   try {
     category_delete($category_id);
     $items = category_select_all();
-    $MESSAGE = "Remove successful!";
+    $MESSAGE = "Xoá thành công!";
   } catch (Exception $exc) {
-    $MESSAGE = "Remove failed!";
+    $MESSAGE = "Không được phép xoá, vì có sản phẩm thuộc danh mục này!";
   }
 
   $VIEW_NAME = "category/list.php";

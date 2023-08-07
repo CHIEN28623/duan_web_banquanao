@@ -22,43 +22,43 @@
 
         ?>
 
-      <input type="text" name="order_id" value="<?= $order_id ?>" hidden>
-      <tr>
-        <td>
-          <?= $order_id ?>
-        </td>
+        <input type="text" name="order_id" value="<?= $order_id ?>" hidden>
+        <tr>
+          <td>
+            <?= $order_id ?>
+          </td>
 
-        <td>
-          <?= number_format($total_price, 0, ',', '.') ?> VND
-        </td>
+          <td>
+            <?= number_format($total_price, 0, ',', '.') ?> VND
+          </td>
 
-        <td>
-          <?= $phone_number ?>
-        </td>
-        <td>
-          <?= date('d-m-Y', strtotime($created_at)) ?>
-        </td>
-        <td>
-          <?php if ($status == 0) { 
+          <td>
+            <?= $phone_number ?>
+          </td>
+          <td>
+            <?= date('d-m-Y', strtotime($created_at)) ?>
+          </td>
+          <td>
+            <?php if ($status == 0) {
               echo "Đang chờ xác nhận";
-             } else if ($status == 1) {
+            } else if ($status == 1) {
               echo "Đang giao hàng";
-             } else {
+            } else {
               echo "Giao hàng thành công";
-             }
-             
-             
-             ?>
+            }
 
-        </td>
 
-        <td>
-          <a href="index.php?btn_edit&order_id=<?= $order_id ?>" class="link-secondary">Edit</a>
-          <a href="index.php?order_id=<?= $order_id ?>" class="link-secondary">Details</a>
-        </td>
-      </tr>
+            ?>
 
-      <?php
+          </td>
+
+          <td>
+            <a href="index.php?btn_edit&order_id=<?= $order_id ?>" class="link-secondary">Chỉnh sửa</a>
+            <a href="index.php?order_id=<?= $order_id ?>" class="link-secondary">Chi tiết</a>
+          </td>
+        </tr>
+
+        <?php
       }
       ?>
     </tbody>
