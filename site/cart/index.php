@@ -1,4 +1,5 @@
 <?php
+session_start();
 $cart = $_SESSION['cart'];
 $total = 0;
 $totalItem = 0;
@@ -34,7 +35,7 @@ foreach ($cart as $item) {
     <div class="w-3/4 bg-white px-10 py-10">
       <div class="flex justify-between border-b pb-8">
         <h1 class="font-semibold text-2xl">Giỏ hàng</h1>
-        <h2 class="font-semibold text-2xl">
+        <h2 class="font-semibold text-2xl" id="totalItem">
           <?= $totalItem ?> sản phẩm
         </h2>
       </div>
@@ -47,43 +48,50 @@ foreach ($cart as $item) {
       </div>
       <!-- product -->
       <?php foreach ($cart as $item) { ?>
-        <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
-          <div class="flex w-2/5">
-            <div class="w-20">
-              <img class="h-24" src="/<?= $item['image'] ?>" alt="">
-            </div>
-            <div class="flex flex-col justify-between ml-4 flex-grow">
-              <span class="font-bold text-sm">
-                <?= $item['name'] ?>
-              </span>
-              <span class="text-red-500 text-xs">
-                <?= $item['category'] ?>
-              </span>
-              <a href="/site/homepage?cart&remove&id=<?= $item['id'] ?>&size=<?= $item['size'] ?>"
-                class="font-semibold hover:text-red-500 text-gray-500 text-xs">Gỡ bỏ</a>
-            </div>
+      <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+        <div class="flex w-2/5">
+          <div class="w-20">
+            <img class="h-24" src="/<?= $item['image'] ?>" alt="">
           </div>
-          <div class="flex justify-center w-1/5">
-
-            <span class="mx-2 border text-center w-8">
-              <?= $item['quantity'] ?>
+          <div class="flex flex-col justify-between ml-4 flex-grow">
+            <span class="font-bold text-sm">
+              <?= $item['name'] ?>
             </span>
-
-
-
+            <span class="text-red-500 text-xs">
+              <?= $item['category'] ?>
+            </span>
+            <a href="/site/homepage?cart&remove&id=<?= $item['id'] ?>&size=<?= $item['size'] ?>"
+              class="font-semibold hover:text-red-500 text-gray-500 text-xs">Gỡ bỏ</a>
           </div>
-          <span class="text-center w-1/5 font-semibold text-sm">
-            <?= number_format($item['price'], 0, ',', '.') ?> VND
-          </span>
-          <span class="text-center w-1/5 font-semibold text-sm">
-            <?= number_format($item['price'] * $item['quantity'], 0, ',', '.') ?>
-            VND
-          </span>
-          <span class="text-center w-1/5 font-semibold text-sm ">
-            Size
-            <?= substr($item['size'], 5) ?>
-          </span>
         </div>
+        <div class="flex justify-center w-1/5">
+
+          <span class="mx-2 text-center">
+            <div class="flex items-center mb-4">
+              <button id="decrease" onclick="changeQuantity('decrease', <?= $item['id'] ?>, '<?= $item['size'] ?>')"
+                class="px-2 py-1 bg-blue-500 text-white">-</button>
+              <input id="quantity_<?= $item['id'] ?>" type="number"
+                class="w-[34px] ml-2 text-center bg-transparent outline-none" value="<?= $item['quantity'] ?>" readonly>
+              <button id="increase" onclick="changeQuantity('increase', <?= $item['id'] ?>, '<?= $item['size'] ?> ')"
+                class="px-2 py-1 bg-blue-500 text-white">+</button>
+            </div>
+          </span>
+
+
+
+        </div>
+        <span class="text-center w-1/5 font-semibold text-sm">
+          <?= number_format($item['price'], 0, ',', '.') ?> VND
+        </span>
+        <span class="text-center w-1/5 font-semibold text-sm" id="totalPrice_<?= $item['id'] ?>">
+          <?= number_format($item['price'] * $item['quantity'], 0, ',', '.') ?>
+          VND
+        </span>
+        <span class="text-center w-1/5 font-semibold text-sm ">
+          Size
+          <?= substr($item['size'], 5) ?>
+        </span>
+      </div>
       <?php } ?>
 
       <!-- product -->
@@ -104,7 +112,7 @@ foreach ($cart as $item) {
       <h1 class="font-semibold text-2xl border-b pb-8">Đơn hàng</h1>
       <div class="flex justify-between mt-10 mb-5">
         <span class="font-semibold text-sm uppercase">Tổng</span>
-        <span class="font-semibold text-sm">
+        <span class="font-semibold text-sm" id="totalAbove">
           <?= number_format($total, 0, ',', '.') ?> VND
         </span>
       </div>
@@ -116,7 +124,7 @@ foreach ($cart as $item) {
       <div class="border-t mt-8 flex flex-col">
         <div class="flex font-semibold justify-between py-6 text-sm uppercase">
           <span>Tổng tiền</span>
-          <span>
+          <span id="total" </span>
             <?php if (number_format($total) > 0) {
               echo number_format($total, 0, ',', '.');
             } else {
@@ -125,13 +133,13 @@ foreach ($cart as $item) {
           </span>
         </div>
         <?php if ($totalItem > 0) { ?>
-          <a href="/site/order/index.php?information"
-            class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-center text-sm text-white uppercase w-full ">Thanh
-            toán</a>
+        <a href="/site/order/index.php?information"
+          class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-center text-sm text-white uppercase w-full ">Thanh
+          toán</a>
         <?php } else { ?>
-          <a href="/site/product"
-            class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-center text-sm text-white uppercase w-full ">Mua
-            hàng</a>
+        <a href="/site/product"
+          class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-center text-sm text-white uppercase w-full ">Mua
+          hàng</a>
         <?php } ?>
 
 
