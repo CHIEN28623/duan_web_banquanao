@@ -61,7 +61,9 @@ foreach ($cart as $key => $item) {
   }
 }
 
-$response['total'] = $total;
+$response['total'] = $total - $_SESSION['promo'] * $total / 100;
+$response['promo'] = $_SESSION['promo'] * $total / 100;
+$response['totalAbove'] = $total;
 $response['totalItem'] = $totalItem;
 $response['quantity'] = $quantity;
 $response['totalPriceItem'] = $totalPriceItem;

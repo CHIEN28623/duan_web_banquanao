@@ -27,7 +27,7 @@ if (isset($_SESSION['cart'])) {
             chủ</a>
         </li>
         <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-            href="/site/product/index.php">Sản phẩm</a></li>
+            href="/site/product/index.php?category_id=29">Sản phẩm</a></li>
         <?php if ($_SESSION['is_admin'] == 1) { ?>
           <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
               href="/admin/homepage/index.php">Trang admin</a>

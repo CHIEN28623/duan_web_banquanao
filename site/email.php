@@ -5,7 +5,7 @@ if (!isset($email)) {
 $to = $email;
 $subject = 'Thông báo Đặt hàng thành công';
 
-$productsHTML;
+$productsHTML = "";
 
 foreach ($cart as $item) {
     $productsHTML = $productsHTML . '<li>' . $item['name'] . ' x ' . $item['quantity'] . ' x ' . $item['price'] . ' VND</li>';
