@@ -75,3 +75,10 @@ function total_product_by_month($month)
   $sql = "SELECT SUM(quantity) FROM order_items oi INNER JOIN orders o ON oi.order_id = o.order_id WHERE MONTH(o.created_at) = $month AND o.status = 2";
   return pdo_query_value($sql);
 }
+
+// tính doanh thu mỗi tháng
+function total_revenue_by_month($month)
+{
+  $sql = "SELECT SUM(total_price) FROM orders WHERE MONTH(created_at) = $month AND status = 2";
+  return pdo_query_value($sql);
+}

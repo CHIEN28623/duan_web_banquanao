@@ -20,7 +20,8 @@ if (exist_param('delete')) {
 } else if (exist_param("success")) {
   require_once '../../dao/order-item.php';
   // thêm vào bàng order item
-  $order_id = insert_order($_SESSION['user_id'], $total, $address, $phone_number, $fullname, $email);
+  $promoPrice = $total * $_SESSION['promo'] / 100;
+  $order_id = insert_order($_SESSION['user_id'], $total - $promoPrice, $address, $phone_number, $fullname, $email);
 
   foreach ($cart as $item) {
     $product_id = $item['id'];
@@ -30,7 +31,7 @@ if (exist_param('delete')) {
     insert_order_item($order_id, $product_id, $quantity, $price, $size);
   }
 
-  require_once '../email.php';
+  require_once '../../email.php';
 
   $VIEW_NAME = "order/success.php";
 
@@ -50,4 +51,4 @@ if (exist_param('delete')) {
   $VIEW_NAME = "order/index.php";
 }
 
-require '../layout.php';
+require_once '../layout.php';

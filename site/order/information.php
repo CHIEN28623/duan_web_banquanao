@@ -14,8 +14,7 @@ foreach ($cart as $item) {
       <div class="mx-auto w-full max-w-lg">
         <h1 class="relative text-2xl font-medium text-gray-700 sm:text-3xl">Thông tin thanh toán<span
             class="mt-2 block h-1 w-10 bg-blue-600 sm:w-20"></span></h1>
-        <form action="index.php?total=<?= $total + 50000 - $promoPrice ?>" method="post"
-          class="mt-10 flex flex-col space-y-4">
+        <form action="index.php?total=<?= $total + 50000 ?>" method="post" class="mt-10 flex flex-col space-y-4">
           <div><label for="fullname" class="text-xs font-semibold text-gray-500">Họ và tên</label><input id="fullname"
               name="fullname" placeholder="Nguyễn Văn A" value="<?= $_SESSION['fullname'] ?>"
               class="mt-1 block w-full border rounded border-gray-300 bg-gray-50 py-3 px-4 text-sm placeholder-gray-300 shadow-sm outline-none transition focus:ring-2 focus:ring-blue-500"
@@ -126,12 +125,12 @@ foreach ($cart as $item) {
           </p>
           <p class="flex justify-between text-sm font-medium text-white"><span>Khuyến mãi giảm
               giá</span><span>
-              <?= number_format($promoPrice, 0, ',', '.') ?> VND
+              <?= number_format($_SESSION['promo'] * $total / 100, 0, ',', '.') ?> VND
             </span></p>
           <p class="flex justify-between text-sm font-medium text-white"><span>Phí vận chuyển</span><span>50.000
               VND</span></p>
           <p class="flex justify-between text-lg font-bold text-white"><span>Tổng hoá đơn</span><span>
-              <?= number_format($total + 50000, 0, ',', '.') ?> VND
+              <?= number_format($total + 50000 - $_SESSION['promo'] * $total / 100, 0, ',', '.') ?> VND
             </span>
           </p>
         </div>

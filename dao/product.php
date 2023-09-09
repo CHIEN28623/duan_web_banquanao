@@ -108,6 +108,7 @@ function product_select_by_keyword($keyword)
 }
 
 
+// Lấy ra các lượt xem các sản phẩm được tạo ra trong mỗi tháng
 function product_count_views_each_month()
 {
   $sql = "SELECT MONTH(created_at) as month, SUM(view) as views FROM products GROUP BY MONTH(created_at)";

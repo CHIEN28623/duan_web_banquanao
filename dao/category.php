@@ -17,11 +17,7 @@ function category_update($id, $name)
 function category_delete($id)
 {
   $sql = "update categories set name = 'remove' where category_id=?";
-  // if (is_array($id)) {
-  //   foreach ($id as $i) {
-  //     pdo_execute($sql, $i);
-  //   }
-  // } else {
+
   pdo_execute($sql, $id);
 
   $sql = "update products set category_id = 1 where category_id=?";

@@ -147,7 +147,7 @@ foreach ($cart as $item) {
           <span>Tổng tiền</span>
           <span id="total" </span>
             <?php if (number_format($total) > 0) {
-              echo number_format($total, 0, ',', '.');
+              echo number_format($total - $_SESSION['promo'] * $total / 100, 0, ',', '.');
             } else {
               echo 0;
             } ?> VND

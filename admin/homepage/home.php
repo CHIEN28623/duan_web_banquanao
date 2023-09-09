@@ -6,8 +6,6 @@ require "../../dao/comment.php";
 require "../../dao/statistic.php";
 require "../../dao/order.php";
 
-$viewsArr = product_count_views_each_month();
-
 ?>
 
 <main>
@@ -155,7 +153,7 @@ $viewsArr = product_count_views_each_month();
                         "data": [<?= product_count_by_category_name("Shorts") ?>,
                           <?= product_count_by_category_name("Shirts") ?>,
                           <?= product_count_by_category_name("Jeans") ?>,
-                          <?= product_count_by_category_name("Áo Khoác Blazer") ?>
+                          <?= product_count_by_category_name("Áo Blazer") ?>
                         ],
                         "backgroundColor": ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)",
                           "rgb(54, 162, 26)"
@@ -174,7 +172,7 @@ $viewsArr = product_count_views_each_month();
             <div class="bg-white border-transparent rounded-lg shadow-xl">
               <div
                 class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-                <h2 class="font-bold uppercase text-gray-600">Số lượng lượt xem của sản phẩm</h2>
+                <h2 class="font-bold uppercase text-gray-600">Doanh thu theo tháng</h2>
               </div>
               <div class="p-5">
                 <canvas id="chartjs-0" class="chartjs" width="undefined" height="undefined"></canvas>
@@ -182,10 +180,13 @@ $viewsArr = product_count_views_each_month();
                   new Chart(document.getElementById("chartjs-0"), {
                     "type": "line",
                     "data": {
-                      "labels": ["January", "February", "March", "April", "May", "June", "July"],
+                      "labels": ["Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9"],
                       "datasets": [{
-                        "label": "Total Views",
-                        "data": [605, 59, 80, 81, 56, <?= $viewsArr[0][1] ?>, 40],
+                        "label": "VNĐ",
+                        "data": [605, 59, 80, 2000000,
+                          1000000,
+                          <?= total_revenue_by_month("9") ?>
+                        ],
                         "fill": false,
                         "borderColor": "rgb(75, 192, 192)",
                         "lineTension": 0.1
@@ -217,7 +218,7 @@ $viewsArr = product_count_views_each_month();
                       "labels": ["Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
                       "datasets": [{
                         "label": "Sản phẩm",
-                        "data": [5, 4, <?= total_product_by_month('08') ?>, <?= total_product_by_month('09') ?>,
+                        "data": [0, 0, 4, <?= total_product_by_month('09') ?>,
                           <?= total_product_by_month('10') ?>, <?= total_product_by_month('11') ?>,
                           <?= total_product_by_month('12') ?>,
                         ],

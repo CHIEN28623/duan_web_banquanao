@@ -1,21 +1,39 @@
 <?php
-$email = "giabao20032001@gmail.com";
-if (!isset($email)) {
-    $email = $_SESSION['user_id'];
-}
-$to = $email;
-$subject = 'Thông báo Đặt hàng thành công';
+require 'vendor/autoload.php';
 
-$order_id = 1;
-$promoPrice = 100;
-$total = 1000;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-$productsHTML = "";
+$mail = new PHPMailer(true);
 
+try {
+    // Server settings
+    if (!isset($email)) {
+        $email = $_SESSION['user_id'];
+    }
+    $productsHTML = "";
+    foreach ($cart as $item) {
+        $productsHTML = $productsHTML . '<li>' . $item['name'] . ' x ' . $item['quantity'] . ' x ' . $item['price'] . ' VND</li>';
+        ;
+    }
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'giabao20032001@gmail.com';
+    $mail->Password = 'dixyilzwjtoekqoh';
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
 
+    // Recipients
+    $mail->setFrom('sender@example.com', 'Men Fashion Shop');
+    $mail->addAddress($email, 'Recipient Name');
 
-$message = '
-    <html>
+    // Content
+    $mail->isHTML(true);
+    $mail->Subject = 'Order successfully';
+    $mail->Body = '
+  
+  <html>
     <head>
         <title>Thông báo Đặt hàng thành công</title>
         <style>
@@ -74,28 +92,25 @@ $message = '
                 <h2>Thông tin đơn hàng</h2>
                 <p><strong>Mã đơn hàng:</strong> ' . $order_id . '</p>
                 ' .
-    $productsHTML .
-    '
+        $productsHTML .
+        '
                 <hr/>
+                <p><strong>Tổng giá: </strong>' . $total . ' VND </p>
                 <p><strong>Giảm giá: </strong> ' . $promoPrice . ' VND </p>
                 <p><strong>Phí giao hàng: </strong> 50000 VND </p>
-                <p><strong>Tổng hoá đơn: </strong>' . $total . ' VND </p>
+                <p><strong>Tổng hoá đơn: </strong>' . $total - $promoPrice . ' VND </p>
             </div>
             <p class="thank-you">Hàng sẽ đến tay bạn trong 2 - 4 ngày tới!</p> 
             <p class="thank-you">Cảm ơn bạn đã mua hàng!</p>
         </div>
     </body>
     </html>
-';
-$headers = 'From: menfashion@ecommerce.com' . "\r\n" .
-    'Reply-To: sender@example.com' . "\r\n" .
-    'MIME-Version: 1.0' . "\r\n" .
-    'Content-Type: text/html; charset=utf-8' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
+  
+  ';
 
-if (mail($to, $subject, $message, $headers)) {
-    echo 'Email sent successfully!';
-} else {
-    echo 'Error sending email.';
+    // Send email
+    $mail->send();
+} catch (Exception $e) {
+    echo 'Failed to send email. Error: ' . $mail->ErrorInfo;
 }
 ?>

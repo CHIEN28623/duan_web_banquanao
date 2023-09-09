@@ -14,18 +14,18 @@
       foreach ($items as $item) {
         extract($item);
         ?>
-        <tr>
-          <th><input type="checkbox" name="category_id[]" value="<?= $category_id ?>"></th>
+      <tr>
+        <th><input type="checkbox" name="category_id[]" value="<?= $category_id ?>"></th>
 
-          <td>
-            <?= $name ?>
-          </td>
-          <td>
-            <a href="index.php?btn_edit&category_id=<?= $category_id ?>" class="link-secondary">Sửa</a>
-            <a href="index.php?btn_delete&category_id=<?= $category_id ?>" class="link-secondary remove">Xoá</a>
-          </td>
-        </tr>
-        <?php
+        <td>
+          <?= $name ?>
+        </td>
+        <td>
+          <a href="index.php?btn_edit&category_id=<?= $category_id ?>" class="link-secondary">Sửa</a>
+          <a href="index.php?btn_delete&category_id=<?= $category_id ?>" class="link-secondary remove">Xoá</a>
+        </td>
+      </tr>
+      <?php
       }
       ?>
     </tbody>
@@ -34,7 +34,6 @@
         <td colspan="4">
           <button id="check-all" type="button" class="button-red">Chọn tất cả</button>
           <button id="clear-all" type="button" class="button-white mx-5">Bỏ chọn tất cả</button>
-          <button id="btn-delete" name="btn_delete" class="button-red">Xoá tất cả các mục đã chọn </button>
           <a href="index.php" class="ml-4 link-primary">Thêm danh mục </a>
         </td>
       </tr>
