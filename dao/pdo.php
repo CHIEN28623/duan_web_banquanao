@@ -3,7 +3,8 @@ function pdo_get_connection()
 {
   $dburl = "mysql:host=127.0.0.1:3306;dbname=ecommerce";
   $username = 'root';
-  $password = 'leeareum1';
+  // $password = 'leeareum1';
+  $password = '';
 
   $pdo = new PDO($dburl, $username, $password);
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

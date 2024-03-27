@@ -51,7 +51,7 @@
           <span class="text-center w-1/5 font-semibold text-sm ">
             <?= $item['phone_number'] ?>
           </span>
-          <a href="/site/order/index.php?order_detail&id=<?= $item['order_id'] ?>"
+          <a href="/duan1/site/order/index.php?order_detail&id=<?= $item['order_id'] ?>"
             class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-center text-sm text-white uppercase w-[140px] ">Chi
             tiết</a>
         </div>
@@ -61,7 +61,7 @@
 
 
 
-      <a href="/site/product" class="flex font-semibold text-indigo-600 text-sm mt-10">
+      <a href="/duan1/site/product" class="flex font-semibold text-indigo-600 text-sm mt-10">
 
         <svg class="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512">
           <path

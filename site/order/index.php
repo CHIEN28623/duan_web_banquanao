@@ -4,19 +4,14 @@ require_once '../../dao/order.php';
 extract($_REQUEST);
 $cart = $_SESSION['cart'];
 
-
 if (exist_param('delete')) {
-
   $orders = order_select_by_id($_SESSION['user_id']);
   $MESSAGE = "New product added successfully!";
   $VIEW_NAME = "order/list.php";
-
 } else if (exist_param("addressss")) {
-
   require_once '../../dao/user.php';
   $VIEW_NAME = "order/address.php";
   $_SESSION['test'] = $_POST['phone_number'];
-
 } else if (exist_param("success")) {
   require_once '../../dao/order-item.php';
   // thêm vào bàng order item
@@ -34,11 +29,9 @@ if (exist_param('delete')) {
   require_once '../../email.php';
 
   $VIEW_NAME = "order/success.php";
-
 } else if (exist_param("information")) {
   $VIEW_NAME = "order/information.php";
 } else if (exist_param("list")) {
-
   require_once '../../dao/order.php';
   $orders = order_select_by_user($_SESSION['user_id']);
   $VIEW_NAME = "order/list.php";
@@ -52,3 +45,4 @@ if (exist_param('delete')) {
 }
 
 require_once '../layout.php';
+?>

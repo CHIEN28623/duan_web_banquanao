@@ -23,14 +23,14 @@ if (isset($_SESSION['cart'])) {
   <div class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
     <nav>
       <ul class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
-        <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="/index.php">Trang
+        <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="/duan1/index.php">Trang
             chủ</a>
         </li>
         <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-            href="/site/product/index.php?category_id=29">Sản phẩm</a></li>
+            href="/duan1/site/product/index.php?category_id=29">Sản phẩm</a></li>
         <?php if ($_SESSION['is_admin'] == 1) { ?>
           <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
-              href="/admin/homepage/index.php">Trang admin</a>
+              href="/duan1/admin/homepage/index.php">Trang admin</a>
           </li>
         <?php } ?>
       </ul>
@@ -41,7 +41,7 @@ if (isset($_SESSION['cart'])) {
 
   <div class="order-1 md:order-2">
     <a class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl "
-      href="/site/homepage/index.php">
+      href="/duan1/site/homepage/index.php">
       <svg class="fill-current text-gray-800 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
         viewBox="0 0 24 24">
         <path
@@ -55,11 +55,11 @@ if (isset($_SESSION['cart'])) {
 
     <?php
     if (isset($_SESSION['image'])) {
-      echo "<a class='inline-block no-underline hover:text-black' href='/site/account?profile'><img src='" . $_SESSION['image'] . "' alt='avatar' class='rounded-full h-8 w-8 object-cover'></a>";
+      echo "<a class='inline-block no-underline hover:text-black' href='/duan1/site/account?profile'><img src='" . $_SESSION['image'] . "' alt='avatar' class='rounded-full h-8 w-8 object-cover'></a>";
 
     } else {
       echo '
-      <a class="inline-block no-underline hover:text-black cursor-pointer" href="/site/account/login.php">
+      <a class="inline-block no-underline hover:text-black cursor-pointer" href="/duan1/site/account/login.php">
       <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
         viewBox="0 0 24 24">
         <circle fill="none" cx="12" cy="7" r="3" />
@@ -73,14 +73,14 @@ if (isset($_SESSION['cart'])) {
 
     <?php
     if (isset($_SESSION['fullname'])) {
-      echo '<a class="text-gray-600 no-underline hover:text-black hover:underline mx-3 cursor-pointer" href="/site/account/login.php?logout" > Đăng xuất </a>';
+      echo '<a class="text-gray-600 no-underline hover:text-black hover:underline mx-3 cursor-pointer" href="/duan1/site/account/login.php?logout" > Đăng xuất </a>';
 
     }
 
 
     ?>
 
-    <a class="pl-3 inline-block no-underline hover:text-black relative" href="/site/homepage?cart">
+    <a class="pl-3 inline-block no-underline hover:text-black relative" href="/duan1/site/homepage?cart">
       <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
         viewBox="0 0 24 24">
         <path
@@ -94,7 +94,7 @@ if (isset($_SESSION['cart'])) {
       <?php } ?>
     </a>
 
-    <a href="/site/order/index.php?list">
+    <a href="/duan1/site/order/index.php?list">
       <svg xmlns=" http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         class="w-6 h-6 ml-4 cursor-pointer">
         <path stroke-linecap="round" stroke-linejoin="round"

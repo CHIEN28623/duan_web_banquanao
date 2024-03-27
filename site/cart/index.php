@@ -1,32 +1,74 @@
 <?php
-session_start();
-$cart = $_SESSION['cart'];
-$total = 0;
-$totalItem = 0;
+
+// session_start();
+// $cart = $_SESSION['cart'];
+// $total = 0;
+// $totalItem = 0;
 
 
-if (exist_param("remove")) {
-  $id = $_GET['id'];
-  $size = $_GET['size'];
-  // xoa bo item voi id = $id trong session
-  $_SESSION['cart'] = array_filter(
-    $cart,
-    // closure lọc nếu item nào có id != $id hoặc size != $size thì return true 
-    function ($item) use ($id, $size) {
-      return $item['id'] != $id || $item['size'] != $size;
-    }
-  );
+// if (exist_param("remove")) {
+//   $id = $_GET['id'];
+//   $size = $_GET['size'];
+//   // xoa bo item voi id = $id trong session
+//   $_SESSION['cart'] = array_filter(
+//     $cart,
+//     // closure lọc nếu item nào có id != $id hoặc size != $size thì return true 
+//     function ($item) use ($id, $size) {
+//       return $item['id'] != $id || $item['size'] != $size;
+//     }
+//   );
 
-  echo "<script>window.location.href='homepage?cart';</script>";
-  exit;
-}
+//   echo "<script>window.location.href='homepage?cart';</script>";
+//   exit;
+// }
 
-foreach ($cart as $item) {
-  $total += $item['price'] * $item['quantity'];
-  $totalItem += $item['quantity'];
-}
+// foreach ($cart as $item) {
+//   $total += $item['price'] * $item['quantity'];
+//   $totalItem += $item['quantity'];
+// }
 
 // echo var_dump($cart);
+
+?>
+
+<?php
+@session_start();
+
+// Kiểm tra sự tồn tại của giỏ hàng
+if (isset($_SESSION['cart'])) {
+  $cart = $_SESSION['cart'];
+
+  $total = 0;
+  $totalItem = 0;
+
+  // Xóa sản phẩm nếu có tham số 'remove' trong URL
+  if (isset($_GET['remove'])) {
+    if (isset($_GET['id']) && isset($_GET['size'])) {
+      $id = $_GET['id'];
+      $size = $_GET['size'];
+
+      // Lọc ra các sản phẩm không phải là sản phẩm cần xóa
+      $_SESSION['cart'] = array_filter($cart, function ($item) use ($id, $size) {
+        return $item['id'] != $id || $item['size'] != $size;
+      });
+
+      // Chuyển hướng trở lại trang giỏ hàng sau khi xóa sản phẩm
+      header("Location: homepage?cart");
+      exit;
+    }
+  }
+
+  // Tính tổng số lượng sản phẩm và tổng giá tiền
+  foreach ($cart as $item) {
+    $total += $item['price'] * $item['quantity'];
+    $totalItem += $item['quantity'];
+  }
+} else {
+  // Nếu không có giỏ hàng, khởi tạo giỏ hàng trống
+  $cart = [];
+  $total = 0;
+  $totalItem = 0;
+}
 
 ?>
 
@@ -60,20 +102,16 @@ foreach ($cart as $item) {
               <span class="text-red-500 text-xs">
                 <?= $item['category'] ?>
               </span>
-              <a href="/site/homepage?cart&remove&id=<?= $item['id'] ?>&size=<?= $item['size'] ?>"
-                class="font-semibold hover:text-red-500 text-gray-500 text-xs">Gỡ bỏ</a>
+              <a href="/site/homepage?cart&remove&id=<?= $item['id'] ?>&size=<?= $item['size'] ?>" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Gỡ bỏ</a>
             </div>
           </div>
           <div class="flex justify-center w-1/5">
 
             <span class="mx-2 text-center">
               <div class="flex items-center mb-4">
-                <button id="decrease" onclick="changeQuantity('decrease', <?= $item['id'] ?>, '<?= $item['size'] ?>')"
-                  class="px-2 py-1 bg-blue-500 text-white">-</button>
-                <input id="quantity_<?= $item['id'] ?>" type="number"
-                  class="w-[34px] ml-2 text-center bg-transparent outline-none" value="<?= $item['quantity'] ?>" readonly>
-                <button id="increase" onclick="changeQuantity('increase', <?= $item['id'] ?>, '<?= $item['size'] ?> ')"
-                  class="px-2 py-1 bg-blue-500 text-white">+</button>
+                <button id="decrease" onclick="changeQuantity('decrease', <?= $item['id'] ?>, '<?= $item['size'] ?>')" class="px-2 py-1 bg-blue-500 text-white">-</button>
+                <input id="quantity_<?= $item['id'] ?>" type="number" class="w-[34px] ml-2 text-center bg-transparent outline-none" value="<?= $item['quantity'] ?>" readonly>
+                <button id="increase" onclick="changeQuantity('increase', <?= $item['id'] ?>, '<?= $item['size'] ?> ')" class="px-2 py-1 bg-blue-500 text-white">+</button>
               </div>
             </span>
 
@@ -101,8 +139,7 @@ foreach ($cart as $item) {
       <a href="/site/product" class="flex font-semibold text-indigo-600 text-sm mt-10">
 
         <svg class="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512">
-          <path
-            d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
+          <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
         </svg>
         Tiếp tục mua hàng
       </a>
@@ -118,18 +155,26 @@ foreach ($cart as $item) {
       </div>
       <div class="flex justify-between mt-10 mb-5">
         <span class="font-semibold text-sm uppercase">Giảm giá</span>
+
         <span class="font-semibold text-sm" id="promoPrice">
-          <?= number_format($total * $_SESSION['promo'] / 100, 0, ',', '.') ?> VND
+          <?php
+          if (isset($_SESSION['promo'])) {
+            echo number_format($total * $_SESSION['promo'] / 100, 0, ',', '.') . ' VND';
+          } else {
+            echo '0 VND'; // Hoặc giá trị mặc định khác nếu cần
+          }
+          ?>
         </span>
+
       </div>
       <div id="promo-container">
-        <?php if (is_null($_SESSION['promo']) || $_SESSION['promo'] == 0) { ?>
+        <?php if (!isset($_SESSION['promo']) || $_SESSION['promo'] == 0) { ?>
           <div class=" py-4 lg:py-10 discarded">
             <label for="promo" class="font-semibold inline-block mb-3 text-sm uppercase">Mã giảm giá</label>
             <input type="text" id="promo" name="promo" placeholder="Nhập mã giảm giá" class="border p-2 text-sm w-full">
+            <button id="apply-promo" class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">Áp
+              dụng</button>
           </div>
-          <button id="apply-promo" class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase discarded">Áp
-            dụng</button>
         <?php } else { ?>
           <div class="flex justify-between mt-10 mb-5 applied">
             <span class="font-semibold text-sm uppercase">Đã dùng mã giảm giá</span>
@@ -137,34 +182,31 @@ foreach ($cart as $item) {
               <?= $_SESSION['promo'] ?> %
             </span>
           </div>
-          <button id="discard-promo" class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase applied">Bỏ
-            mã giảm
-            giá</button>
+          <button id="discard-promo" class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">Bỏ
+            mã giảm giá</button>
         <?php } ?>
       </div>
+
       <div class="border-t mt-8 flex flex-col">
         <div class="flex font-semibold justify-between py-2 lg:py-6 text-sm uppercase">
           <span>Tổng tiền</span>
-          <span id="total" </span>
-            <?php if (number_format($total) > 0) {
-              echo number_format($total - $_SESSION['promo'] * $total / 100, 0, ',', '.');
+          <span id="total">
+            <?php
+            if (number_format($total) > 0) {
+              echo number_format($total - $_SESSION['promo'] * $total / 100, 0, ',', '.') . ' VND';
             } else {
-              echo 0;
-            } ?> VND
+              echo '0 VND';
+            }
+            ?>
           </span>
         </div>
         <?php if ($totalItem > 0) { ?>
-          <a href="/site/order/index.php?information"
-            class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-center text-sm text-white uppercase w-full ">Thanh
-            toán</a>
+          <a href="/duan1/site/order/index.php?information" class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-center text-sm text-white uppercase w-full">Thanh toán</a>
         <?php } else { ?>
-          <a href="/site/product"
-            class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-center text-sm text-white uppercase w-full ">Mua
-            hàng</a>
+          <a href="/duan1/site/product" class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-center text-sm text-white uppercase w-full">Mua hàng</a>
         <?php } ?>
-
-
       </div>
+
     </div>
 
   </div>

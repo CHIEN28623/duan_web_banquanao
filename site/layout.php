@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Gia Bao Store</title>
+  <title>Chien Store</title>
   <meta name="description" content="Free open source Tailwind CSS Store template">
 
   <script src="/content/js/jquery.min.js" type="text/javascript" defer></script>
@@ -14,6 +14,7 @@
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/output.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 
 
   <style>

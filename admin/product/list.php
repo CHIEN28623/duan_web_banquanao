@@ -2,28 +2,22 @@
 
 <form action="index.php" type="post" class="flex items-center gap-[10px] ml-[20%]  mt-4">
   <p class="text-black ">Phân loại</p>
-  <select class="font-medium text-black p-2 rounded-md bg-transparent border border-blue-500 focus:outline-none"
-    id="filter-select" name="filter">
+  <select class="font-medium text-black p-2 rounded-md bg-transparent border border-blue-500 focus:outline-none" id="filter-select" name="filter">
     <option value="">Mới nhất</option>
-    <option value="highToLow" <?php if ($_GET['filter'] == "highToLow")
-      echo "selected" ?>>Giá từ cao đến thấp
-    </option>
-    <option value="lowToHigh" <?php if ($_GET['filter'] == "lowToHigh")
-      echo "selected" ?>>Giá từ thấp tới cao
-    </option>
+    <option value="highToLow" <?php echo isset($_GET['filter']) && $_GET['filter'] == "highToLow" ? "selected" : "" ?>>Giá từ cao đến thấp</option>
+    <option value="lowToHigh" <?php echo isset($_GET['filter']) && $_GET['filter'] == "lowToHigh" ? "selected" : "" ?>>Giá từ thấp tới cao</option>
   </select>
+
 
 
   <p class="text-black ">Phân theo danh mục</p>
-  <select class="font-medium text-black p-2 rounded-md bg-transparent border border-blue-500 focus:outline-none"
-    id="filter-select" name="category_id">
+  <select class="font-medium text-black p-2 rounded-md bg-transparent border border-blue-500 focus:outline-none" id="filter-select" name="category_id">
     <option value="">Chọn danh mục</option>
     <?php foreach ($category_select_list as $category) { ?>
-    <option value="<?= $category['category_id'] ?>" <?php if ($_GET["category_id"] == $category['category_id'])
-          echo "selected" ?>><?= $category['name'] ?></option>
-    <?php }
-    ?>
+      <option value="<?= $category['category_id'] ?>" <?php echo isset($_GET['category_id']) && $_GET["category_id"] == $category['category_id'] ? "selected" : "" ?>><?= $category['name'] ?></option>
+    <?php } ?>
   </select>
+
   <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
     Lọc
   </button>
@@ -49,38 +43,37 @@
     <tbody class="products">
       <?php
       foreach ($items as $item) {
-        ?>
-      <tr>
-        <td><input type="checkbox" name="category_id[]" value="<?= $item['category_id'] ?>"></td>
-        <td>
-          <?= $item['name'] ?>
-        </td>
-        <td>
-          <img src="/<?= $item['image'] ?>" alt="" style="width: 70px; height: 70px" class="ml-4">
-        </td>
+      ?>
+        <tr>
+          <td><input type="checkbox" name="category_id[]" value="<?= $item['category_id'] ?>"></td>
+          <td>
+            <?= $item['name'] ?>
+          </td>
+          <td>
+            <img src="/<?= $item['image'] ?>" alt="" style="width: 70px; height: 70px" class="ml-4">
+          </td>
 
-        <td>
-          <?= number_format($item['price'], 0, ',', '.') ?> VND
-        </td>
-        <td>
-          <?= $item['view'] ?>
-        </td>
-        <td>
-          <?= $item['size_S'] ?>
-        </td>
-        <td>
-          <?= $item['size_M'] ?>
-        </td>
-        <td>
-          <?= $item['size_L'] ?>
-        </td>
+          <td>
+            <?= number_format($item['price'], 0, ',', '.') ?> VND
+          </td>
+          <td>
+            <?= $item['view'] ?>
+          </td>
+          <td>
+            <?= $item['size_S'] ?>
+          </td>
+          <td>
+            <?= $item['size_M'] ?>
+          </td>
+          <td>
+            <?= $item['size_L'] ?>
+          </td>
 
-        <td>
-          <a href="index.php?btn_edit&product_id=<?= $item['product_id'] ?>" class="link link-secondary mr-1">Edit</a>
-          <a href="index.php?btn_delete&product_id=<?= $item['product_id'] ?>"
-            class="link link-secondary remove">Remove</a>
-        </td>
-      </tr>
+          <td>
+            <a href="index.php?btn_edit&product_id=<?= $item['product_id'] ?>" class="link link-secondary mr-1">Edit</a>
+            <a href="index.php?btn_delete&product_id=<?= $item['product_id'] ?>" class="link link-secondary remove">Remove</a>
+          </td>
+        </tr>
       <?php
       }
       ?>
@@ -90,7 +83,7 @@
         <td colspan="9">
           <?php
           require_once "../components/pagination.php"
-            ?>
+          ?>
         </td>
       </tr>
       <tr>
